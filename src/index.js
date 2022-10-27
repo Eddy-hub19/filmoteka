@@ -5,10 +5,10 @@ import {
   carouselResizing,
   carouselRender,
 } from "./js/carousel";
+import { addToWatch } from "./js/library-list";
 
 // Initial gallery population function goes here
 topMovieList.render();
-
 
 // Button and Modal listeners:
 
@@ -71,13 +71,19 @@ function modalCloser() {
       document.body.classList.toggle("modal-on");
       refs.modalClose.removeEventListener("click", crossClose);
       window.removeEventListener("keydown", modalEsc);
-      refs.modalBackground.removeEventListener("click", backgroundClose);
+      refs.modalBackground.removeEventListener(
+        "click",
+        backgroundClose
+      );
     }
   };
 
   const crossClose = (event) => {
     document.body.classList.toggle("modal-on");
-    refs.modalBackground.removeEventListener("click", backgroundClose);
+    refs.modalBackground.removeEventListener(
+      "click",
+      backgroundClose
+    );
     window.removeEventListener("keydown", modalEsc);
     refs.modalClose.removeEventListener("click", crossClose);
   };
@@ -86,7 +92,10 @@ function modalCloser() {
     if (event.key === "Escape") {
       if (document.body.classList.contains("modal-on")) {
         document.body.classList.toggle("modal-on");
-        refs.modalBackground.removeEventListener("click", backgroundClose);
+        refs.modalBackground.removeEventListener(
+          "click",
+          backgroundClose
+        );
         refs.modalClose.removeEventListener("click", crossClose);
         window.removeEventListener("keydown", modalEsc);
       }
@@ -127,7 +136,8 @@ function lazyLoad() {
   var firstItem = document.querySelector(".gallery__card");
 
   var itemGap = [
-    ...document.defaultView.getComputedStyle(firstItem.parentElement).gap,
+    ...document.defaultView.getComputedStyle(firstItem.parentElement)
+      .gap,
   ];
   itemGap = parseInt(`${itemGap[0]}${itemGap[1]}`);
 
