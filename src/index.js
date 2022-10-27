@@ -4,6 +4,10 @@ import {
   carouselResizing,
   carouselRender,
 } from "./js/carousel";
+import { upwardEl, scrollTop } from './js/upward';
+
+upwardEl();
+scrollTop();
 
 // Initial gallery population function goes here
 

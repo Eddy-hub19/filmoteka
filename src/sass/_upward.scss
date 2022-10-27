@@ -1,0 +1,22 @@
+.upward {
+    position: fixed;
+    bottom: 700px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: url(../img/scroll-up.png);
+    background-size: cover;
+    cursor: pointer;
+    background-color: $main--accent;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.upward.active {
+    bottom: 40px;
+    visibility: visible;
+    opacity: 1;
+}
