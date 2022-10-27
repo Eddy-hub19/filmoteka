@@ -1,36 +1,3 @@
-// .footer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: $secondary--background;
-//   color: $secondary--text;
-
-//   @media screen and (max-width: 767px) {
-//     height: 100px;
-//   }
-
-//   @media screen and (min-width: 768px) and (max-width: 1279px) {
-//     height: 79px;
-//   }
-
-//   @media screen and (min-width: 1280px) {
-//     height: 77px;
-//   }
-
-//   &__text {
-//     display: inherit;
-//     justify-content: inherit;
-//     align-items: inherit;
-//     flex-wrap: wrap;
-//   }
-
-//   &__link {
-//     text-decoration: underline;
-//   }
-// }
-
-// _______________________________________________
-
 .footer {
   background-color: $footer-bg-color;
   color: $footer-text-color;
