@@ -9,6 +9,7 @@ import {
 // Initial gallery population function goes here
 topMovieList.render();
 
+
 // Button and Modal listeners:
 
 refs.logo.addEventListener("click", (event) => {

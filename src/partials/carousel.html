@@ -1,6 +1,10 @@
 <div class="carousel">
   <div class="carousel__container">
-    <div class="carousel__left">
+    <button
+      type="button"
+      class="carousel__left js_pagination--btn"
+      data-page="prev"
+    >
       <img
         src="./img/arrow-left.svg"
         alt="Arrow Left"
@@ -8,9 +12,13 @@
         height="16px"
         class="arrow__left"
       />
-    </div>
+    </button>
     <div class="carousel__content"></div>
-    <div class="carousel__right">
+    <button
+      type="button"
+      class="carousel__right js_pagination--btn"
+      data-page="next"
+    >
       <img
         src="./img/arrow-left.svg"
         alt="Arrow Right"
@@ -18,6 +26,6 @@
         height="16px"
         class="arrow__right"
       />
-    </div>
+    </button>
   </div>
 </div>

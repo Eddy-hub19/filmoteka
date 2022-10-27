@@ -400,9 +400,10 @@ ul {
   color: #ff6b08;
 }
 .gallery__rating {
-  display: inherit;
-  justify-content: center;
+
+  display: flex;
   align-items: center;
+  justify-content: center;
   width: 40px;
   height: 20px;
   margin-left: 8px;
@@ -435,9 +436,6 @@ ul {
   100% {
     background-position: 450px 0;
   }
-}
-.home .gallery__rating {
-  display: none;
 }
 
 .overlay {
@@ -860,4 +858,5 @@ body.dark__theme .footer-text__link {
 }
 .carousel__number.more {
   padding-bottom: 9px;
-}/*# sourceMappingURL=index.css.map */
+}
+/*# sourceMappingURL=index.css.map */
