@@ -1,4 +1,4 @@
-export default genres = [
+export default [
   {
     id: 28,
     name: "Action",
