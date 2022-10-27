@@ -46,8 +46,7 @@ ul {
   color: #000;
   text-transform: uppercase;
 }
-.button:hover,
-.button:focus {
+.button:hover, .button:focus {
   background-color: #ff6b08;
   border-color: #ff6b08;
   color: #fff;
@@ -55,12 +54,7 @@ ul {
 
 .header {
   color: #fff;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.56),
-      rgba(0, 0, 0, 0.56)
-    ),
-    url(../img/home.jpg);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/home.jpg);
   background-position: center bottom;
   background-repeat: no-repeat;
 }
@@ -108,11 +102,11 @@ ul {
   margin-right: 10px;
   background-color: #fff;
   -webkit-mask-image: url(../img/film.svg);
-  mask-image: url(../img/film.svg);
+          mask-image: url(../img/film.svg);
   -webkit-mask-size: contain;
-  mask-size: contain;
+          mask-size: contain;
   -webkit-mask-position: center;
-  mask-position: center;
+          mask-position: center;
 }
 .navigation__logo h1 {
   font-size: inherit;
@@ -184,9 +178,9 @@ ul {
   height: 12px;
   background-color: #fff;
   -webkit-mask-image: url(../img/search.svg);
-  mask-image: url(../img/search.svg);
+          mask-image: url(../img/search.svg);
   -webkit-mask-size: contain;
-  mask-size: contain;
+          mask-size: contain;
 }
 .search__box {
   pointer-events: all;
@@ -263,8 +257,7 @@ ul {
     margin-right: 16px;
   }
 }
-.switcher .button:hover,
-.switcher .button:focus {
+.switcher .button:hover, .switcher .button:focus {
   border-color: #ff6b08;
 }
 
@@ -281,33 +274,18 @@ ul {
 }
 @media screen and (max-width: 767px) {
   .library .header {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
-      ),
-      url(../img/library_320.jpg);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/library_320.jpg);
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .library .header {
     height: 219px;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
-      ),
-      url(../img/library_768.jpg);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/library_768.jpg);
   }
 }
 @media screen and (min-width: 1280px) {
   .library .header {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
-      ),
-      url(../img/library_1280.jpg);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/library_1280.jpg);
   }
 }
 .library .navigation__library::after {
@@ -389,7 +367,7 @@ ul {
 .gallery__image {
   flex: 1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 5px;
 }
 @media screen and (max-width: 767px) {
@@ -422,9 +400,9 @@ ul {
   color: #ff6b08;
 }
 .gallery__rating {
-  display: inherit;
-  justify-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
   width: 40px;
   height: 20px;
   margin-left: 8px;
@@ -439,18 +417,12 @@ ul {
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      60deg,
-      transparent 0 40%,
-      rgba(255, 255, 255, 0.4666666667),
-      transparent 60% 100%
-    ),
-    #aaa;
+  background: linear-gradient(60deg, transparent 0 40%, rgba(255, 255, 255, 0.4666666667), transparent 60% 100%), #aaa;
   background-size: 130%;
   background-repeat: no-repeat;
   background-position: -450px 0;
   -webkit-animation: loading 1000ms infinite;
-  animation: loading 1000ms infinite;
+          animation: loading 1000ms infinite;
 }
 
 @-webkit-keyframes loading {
@@ -464,10 +436,6 @@ ul {
     background-position: 450px 0;
   }
 }
-.home .gallery__rating {
-  display: none;
-}
-
 .overlay {
   pointer-events: none;
   opacity: 0;
@@ -531,7 +499,7 @@ ul {
   border: none;
   background: #000;
   -webkit-mask-image: url(../img/close.svg);
-  mask-image: url(../img/close.svg);
+          mask-image: url(../img/close.svg);
 }
 .modal__content {
   display: flex;
@@ -567,7 +535,7 @@ ul {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 5px;
 }
 .modal__details {
@@ -783,8 +751,7 @@ ul {
     margin-bottom: 60px;
   }
 }
-.carousel__left,
-.carousel__right {
+.carousel__left, .carousel__right {
   cursor: pointer;
   display: inherit;
   justify-content: center;
@@ -824,4 +791,4 @@ ul {
 }
 .carousel__number.more {
   padding-bottom: 9px;
-} /*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
