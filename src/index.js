@@ -5,7 +5,14 @@ import {
   carouselResizing,
   carouselRender,
 } from "./js/carousel";
+
+import { upwardEl, scrollTop } from './js/upward';
+
+upwardEl();
+scrollTop();
+
 import { addToWatch } from "./js/library-list";
+
 
 // Initial gallery population function goes here
 topMovieList.render();
