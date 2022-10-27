@@ -1,3 +1,4 @@
+import { topMovieList } from "./js/topMovieList";
 import { refs } from "./js/refs";
 import {
   carouselListener,
@@ -6,7 +7,7 @@ import {
 } from "./js/carousel";
 
 // Initial gallery population function goes here
-
+topMovieList.render();
 modalListener();
 
 refs.logo.addEventListener("click", (event) => {
