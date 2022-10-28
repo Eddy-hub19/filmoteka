@@ -8,35 +8,7 @@ const body = document.querySelector('body');
 const modalTeam = document.querySelector('.modal-team__container');
 const heartIcon = document.querySelector('.footer-text__icon');
 
-const ref = {
-  lead: document.querySelector('.js-role-lead'),
-  scrum: document.querySelector('.js-role-scrum'),
-  developer: document.querySelectorAll('.js-role-developer'),
-  mentor: document.querySelector('.js-role-mentor'),
 
-  motko: document.querySelector('.js-name-motko'),
-  kuharuk: document.querySelector('.js-name-kuharuk'),
-  bielova: document.querySelector('.js-name-bielova'),
-  makukha: document.querySelector('.js-name-makukha'),
-  solod: document.querySelector('.js-name-solod'),
-  sekan: document.querySelector('.js-name-sekan'),
-  petlya: document.querySelector('.js-name-petlya'),
-  zahorodnia: document.querySelector('.js-name-zahorodnia'),
-  yaroshovets: document.querySelector('.js-name-yaroshovets'),
-  tsymbaliuk: document.querySelector('.js-name-tsymbaliuk'),
-  malynovska: document.querySelector('.js-name-malynovska'),
-
-  imgmotko: document.querySelector('.team__img-js-motko'),
-  imgkuharuk: document.querySelector('.team__img-js-kuharuk'),
-  imgbielova: document.querySelector('.team__img-js-bielova'),
-  imgmakukha: document.querySelector('.team__img-js-makukha'),
-  imgsolod: document.querySelector('.team__img-js-solod'),
-  imgsekan: document.querySelector('.team__img-js-sekan'),
-  imgpetlya: document.querySelector('.team__img-js-petlya'),
-  imgzahorodnia: document.querySelector('.team__img-js-zahorodnia'),
-  imgyaroshovets: document.querySelector('.team__img-js-yaroshovets'),
-  imgtsymbaliuk: document.querySelector('.team__img-js-tsymbaliuk'),
-};
 
 team.addEventListener('click', onTeamClick);
 closeTeam.addEventListener('click', onCloseTeamClick);
