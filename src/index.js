@@ -1,5 +1,16 @@
+<<<<<<< Updated upstream
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch"
 import { library } from "./js/library-render"
+=======
+import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
+import { refs } from "./js/refs";
+import * as modalTeam from './js/modal-team';
+import {
+  carouselListener,
+  carouselResizing,
+  carouselRender,
+} from "./js/carousel";
+>>>>>>> Stashed changes
 
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch"
 
