@@ -274,3 +274,12 @@
     }
   }
 }
+
+button.active-modal-btn {
+  background-color: gray;
+}
+
+.active-modal-btn:hover,
+.active-modal-btn:focus {
+  background-color: black;
+}

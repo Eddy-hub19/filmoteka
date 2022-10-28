@@ -7,14 +7,40 @@ const LOCAL_STORAGE_DATA = {
 
 localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
 
-console.log(localStorage);
+// парсимо інфу зі стореджа
+
+const savedSettings = localStorage.getItem("storage");
+let parsedSettings = JSON.parse(savedSettings);
+console.log(parsedSettings);
+
+let someFilm = 7180930; // тимчасова змінна
 
 export function addToWatch(e) {
-  console.log(e.target);
+  refs.modalWatch.classList.add("active-modal-btn");
+  if (parsedSettings.watched.indexOf(someFilm) === -1) {
+    parsedSettings.watched.push(someFilm);
+    localStorage.setItem("storage", JSON.stringify(parsedSettings));
+    return;
+  }
+
+  parsedSettings.watched.splice(
+    parsedSettings.watched.indexOf(someFilm, 1)
+  );
+  refs.modalWatch.classList.remove("active-modal-btn");
+  localStorage.setItem("storage", JSON.stringify(parsedSettings));
 }
 
 function addToQue(e) {
-  console.log(e.target);
+  refs.modalQueue.classList.add("active-modal-btn");
+  if (parsedSettings.que.indexOf(someFilm) === -1) {
+    parsedSettings.que.push(someFilm);
+    localStorage.setItem("storage", JSON.stringify(parsedSettings));
+    return;
+  }
+
+  parsedSettings.que.splice(parsedSettings.que.indexOf(someFilm, 1));
+  localStorage.setItem("storage", JSON.stringify(parsedSettings));
+  refs.modalQueue.classList.remove("active-modal-btn");
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
