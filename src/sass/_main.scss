@@ -1,3 +1,8 @@
+@import './utils/mixins';
+@import './utils/variables';
+@import './modal-team';
+@import './utils/placeholders';
+
 .content {
   position: relative;
   width: 100%;
@@ -132,3 +137,4 @@
 //     display: none;
 //   }
 // }
+
