@@ -31,6 +31,9 @@
   position: relative;
   background-color: $main--background;
 
+  border-radius: 5px;
+
+
   @media screen and (max-width: 767px) {
     width: 280px;
     height: 940px;
@@ -48,6 +51,11 @@
     height: 558px;
     padding: 40px 12px;
   }
+
+  .animate__zoomIn{
+    animation-duration: 15000ms;;
+  }
+
 
   &__close {
     position: absolute;
