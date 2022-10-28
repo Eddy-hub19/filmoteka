@@ -8,8 +8,6 @@ const body = document.querySelector('body');
 const modalTeam = document.querySelector('.modal-team__container');
 const heartIcon = document.querySelector('.footer-text__icon');
 
-
-
 team.addEventListener('click', onTeamClick);
 closeTeam.addEventListener('click', onCloseTeamClick);
 backdropTeam.addEventListener('click', onCloseClickBackdrop);
