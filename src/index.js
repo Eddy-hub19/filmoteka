@@ -1,4 +1,5 @@
 import { topMovieList } from "./js/topMovieList";
+import { library } from "./js/library-render";
 import { refs } from "./js/refs";
 import {
   carouselListener,
@@ -36,19 +37,19 @@ refs.homeButton.addEventListener("click", (event) => {
 refs.libraryButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("home", "library");
-
+  library.watchedRender();
   //Gallery population function for this page goes here
 });
 
 refs.watchedButton.addEventListener("click", () => {
   document.body.classList.replace("queue", "watched");
-
+  library.watchedRender();
   //Gallery population function for this page goes here
 });
 
 refs.queueButton.addEventListener("click", () => {
   document.body.classList.replace("watched", "queue");
-
+  library.queueRender();
   //Gallery population function for this page goes here
 });
 
