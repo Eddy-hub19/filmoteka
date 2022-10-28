@@ -113,13 +113,6 @@ ul {
   font-weight: inherit;
 }
 
-.navigation__logo:hover{
-  color: tomato;
-}
-
-.animate__bounceInDown {
-  animation-duration: 1500ms;
-}
 
 .navigation__selector {
   display: inherit;
