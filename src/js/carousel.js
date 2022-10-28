@@ -9,7 +9,7 @@ export function carouselListener() {
           refs.pageCurrent -= 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         }
         break;
 
@@ -19,7 +19,7 @@ export function carouselListener() {
           refs.pageCurrent += 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         }
         break;
 
@@ -28,12 +28,12 @@ export function carouselListener() {
           refs.pageCurrent += 5;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         } else {
           refs.pageCurrent = refs.pageMax;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         }
         break;
 
@@ -42,12 +42,12 @@ export function carouselListener() {
           refs.pageCurrent -= 5;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         } else {
           refs.pageCurrent = 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          simulator.pageSimulator(); //Script to refresh page goes here
+          //Script to refresh page goes here
         }
         break;
 
@@ -56,7 +56,7 @@ export function carouselListener() {
         refs.pageCurrent = pageNumber;
         carouselRender(refs.pageCurrent, refs.pageMax);
 
-        simulator.pageSimulator(); //Script to refresh page goes here
+        //Script to refresh page goes here
 
         break;
     }
