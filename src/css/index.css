@@ -169,7 +169,6 @@ ul {
   line-height: 1.14;
 }
 .search__hourglass {
-  pointer-events: none;
   position: relative;
   margin-bottom: 20px;
 }
