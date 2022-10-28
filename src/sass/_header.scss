@@ -63,6 +63,10 @@
     }
   }
 
+  &__logo:hover{
+    color: tomato;
+  }
+
   &__selector {
     display: inherit;
     align-items: center;
