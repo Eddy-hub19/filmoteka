@@ -1,5 +1,5 @@
 
-import { topMovieList } from "./js/topMovieList";
+import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
 import { library } from "./js/library-render";
 
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
