@@ -11,9 +11,15 @@
       </div>
     </nav>
     <div class="search">
-      <div class="search__hourglass">
-        <input type="text" placeholder="Movie search" class="search__box" />
-      </div>
+      <form class="search__hourglass js-search__form">
+        <button class="search__btn" type="submit">Search</button>
+        <input
+          type="text"
+          placeholder="Movie search"
+          class="search__box"
+          name="searchQuery"
+        />
+      </form>
       <div class="search__warning">
         Search result not successful. Enter the correct movie name and
       </div>

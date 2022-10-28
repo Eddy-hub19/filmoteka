@@ -18,11 +18,11 @@ export default class TmDbApi {
     return response.data;
   };
   //fetchTrendingMovies возвращает массив объектов с топ фильмами на этой неделе
-  fetchSearchMovies = async (query) => {
+  fetchSearchMovies = async (query, page) => {
     const response = await axios.get("/search/movie", {
-      params: { ...this.options, query },
+      params: { ...this.options, query, page },
     });
-    return response;
+    return response.data;
   };
   //fetchSearchMovies возвращает массив объектов которые мы ищем
   fetchMovieDetail = async (movieId) => {

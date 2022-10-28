@@ -1,5 +1,9 @@
+
 import { topMovieList } from "./js/topMovieList";
 import { library } from "./js/library-render";
+
+import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
+
 import { refs } from "./js/refs";
 import {
   carouselListener,
@@ -16,9 +20,10 @@ import { addToWatch } from "./js/library-list";
 
 
 // Initial gallery population function goes here
-topMovieList.render();
 
-// Button and Modal listeners:
+moviesListRenderByTopAndSearch.render();
+modalListener();
+
 
 refs.logo.addEventListener("click", (event) => {
   event.preventDefault();
