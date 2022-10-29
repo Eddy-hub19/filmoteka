@@ -46,4 +46,17 @@ export default class TmDbApi {
     return response.data;
   };
   //fetchMovieDetail возвращает масив объектов с ревьюхами пользователей на этом кино (ВНИМАНИЕ НЕ НА ВСЕ ФИЛЬМЫ ЕСТЬ ТАКАЯ ИНФА)
+  fetchMovieTrailer = async (movieId) => {
+    const response = await axios.get(
+      `/movie/${movieId}/videos?language=en-US`,
+      {
+        params: this.options,
+      }
+    );
+    const key = response.data.results[0].key;
+    const src = `https://www.youtube.com/embed/${key}?autoplay=1`;
+    return src;
+  };
+  // НЕ ЗАБЫВАЕМ ЧТО ПО УМОЛЧАНИЮ СЮДА ПЕРЕДАЕТЬСЯ СТРОКА, перед тем как передать сюда id преобразуйте ее к намберу (Number('id'))
+  // Возвращает ссылку на ролик
 }
