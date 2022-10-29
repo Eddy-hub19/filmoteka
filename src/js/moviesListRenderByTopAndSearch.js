@@ -12,6 +12,7 @@ export const moviesListRenderByTopAndSearch = {
   searchForm: document.querySelector(".js-search__form"),
   searchWarning: document.querySelector(".search__warning"),
   logo: document.querySelector(".navigation__logo"),
+  navigationHomeBtn: document.querySelector(".navigation__home"),
   options: {
     query: "",
     page: 1,
@@ -25,6 +26,7 @@ export const moviesListRenderByTopAndSearch = {
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
     if (searchQuery === currentQuery || searchQuery === "") {
+      this.searchWarning.classList.remove("hidden");
       form.reset();
       return;
     }
@@ -163,7 +165,11 @@ moviesListRenderByTopAndSearch.searchForm.addEventListener(
   )
 );
 
-moviesListRenderByTopAndSearch.logo(
-  "click",
+moviesListRenderByTopAndSearch.logo.addEventListener("click", () => {
+  moviesListRenderByTopAndSearch.options.query = "";
+  moviesListRenderByTopAndSearch.render();
+});
+
+moviesListRenderByTopAndSearch.navigationHomeBtn.addEventListener(`click`, () =>
   moviesListRenderByTopAndSearch.render()
 );
