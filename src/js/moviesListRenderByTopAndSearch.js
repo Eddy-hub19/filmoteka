@@ -2,36 +2,19 @@ import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
 import Handlebars from "handlebars";
-console.log(Handlebars);
+import { refs } from "./refs";
+import { carouselRender } from "./carousel";
+
 const template = Handlebars.compile(``);
-console.log(
-  template(`
-    <div class="color-card">
-      <div
-        class="color-swatch"
-        data-hex="{{hex}}"
-        data-rgb="{{rgb}}"
-        style="background-color: {{hex}}"
-      ></div>
-      <div class="color-meta">
-        <p>HEX: {{ hex }}</p>
-        <p>RGB: {{ rgb }}</p>
-      </div>
-    </div>`)
-);
-// import colorCardTpl from "../templates/color-card.hbs";
-// console.log(template(`../templates/color-card.hbs`));
+
 const Api = new TmDbApi();
 export const defaultPoster =
   "https://tn.fishki.net/26/upload/post/2018/04/20/2577020/afrikanskie-postery-k-gollivudskim-blokbasteram-6.jpg";
 
 export const moviesListRenderByTopAndSearch = {
   movieList: document.querySelector(".gallery"),
-  paginationControlBtns: document.querySelectorAll(".js_pagination--btn"),
   searchForm: document.querySelector(".js-search__form"),
   searchWarning: document.querySelector(".search__warning"),
-  logo: document.querySelector(".navigation__logo"),
-  navigationHomeBtn: document.querySelector(".navigation__home"),
   options: {
     query: "",
     page: 1,
@@ -55,22 +38,7 @@ export const moviesListRenderByTopAndSearch = {
 
     this.render();
   },
-  changePage(event) {
-    const action = event.currentTarget.dataset.page;
-    const { options } = this;
-    if (action === "prev" && this.options.page > 1) {
-      options.page -= 1;
 
-      this.render();
-    } else if (
-      action === "next" &&
-      this.options.page < this.options.totalPages
-    ) {
-      options.page += 1;
-
-      this.render();
-    }
-  },
   async render() {
     const { options } = this;
     const { page, query } = this.options;
@@ -79,6 +47,11 @@ export const moviesListRenderByTopAndSearch = {
       try {
         const filmResponse = await Api.fetchSearchMovies(query, page);
         options.totalPages = filmResponse.total_pages;
+
+        refs.pageMax = filmResponse.total_pages;
+        refs.pageCurrent = options.page;
+        carouselRender(refs.pageCurrent, refs.pageMax);
+
         const films = filmResponse.results;
         if (films.length === 0) {
           this.searchWarning.classList.remove("hidden");
@@ -93,6 +66,10 @@ export const moviesListRenderByTopAndSearch = {
       try {
         const filmResponse = await Api.fetchTrendingMovies(page);
         options.totalPages = filmResponse.total_pages;
+
+        refs.pageMax = filmResponse.total_pages;
+        refs.pageCurrent = options.page;
+        carouselRender(refs.pageCurrent, refs.pageMax);
 
         const films = filmResponse.results;
         this.createMarkUp(this.preparingForMarkUp(films));
@@ -130,7 +107,7 @@ export const moviesListRenderByTopAndSearch = {
             class="gallery__image"
           />
           <div class="gallery__data">
-            <div class="gallery__name">Servant of the People</div>
+            <div class="gallery__name">${title}</div>
             <div class="gallery__stats">
               <p class="gallery__details">${genre_ids.join(", ")} | ${
             release_date[0]
@@ -166,31 +143,9 @@ export const moviesListRenderByTopAndSearch = {
   },
 };
 
-// moviesListRenderByTopAndSearch.render();
-
-moviesListRenderByTopAndSearch.paginationControlBtns.forEach((el) =>
-  el.addEventListener(
-    "click",
-    moviesListRenderByTopAndSearch.changePage.bind(
-      moviesListRenderByTopAndSearch
-    )
-  )
-);
-
 moviesListRenderByTopAndSearch.searchForm.addEventListener(
   "submit",
   moviesListRenderByTopAndSearch.onSearchForm.bind(
     moviesListRenderByTopAndSearch
   )
 );
-
-moviesListRenderByTopAndSearch.logo.addEventListener("click", () => {
-  moviesListRenderByTopAndSearch.options.query = "";
-  moviesListRenderByTopAndSearch.render();
-});
-
-moviesListRenderByTopAndSearch.navigationHomeBtn.addEventListener(`click`, () =>
-  moviesListRenderByTopAndSearch.render()
-);
-
-console.log(Api.fetchMovieTrailer(11));

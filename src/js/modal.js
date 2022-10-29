@@ -3,7 +3,6 @@ import TmDbApi from "./services/fetchApi"
 
 // fetchApi for movieDetail
 const Api = new TmDbApi()
-
 async function render(id) {
     try {
         const filmResponse = await Api.fetchMovieDetail(id)
@@ -12,9 +11,7 @@ async function render(id) {
         console.log(error)
     }
 }
-
 // Це для накидування лістенерів для закриття модалки:
-
 function modalCloser() {
     const backgroundClose = (event) => {
         if (event.target == event.currentTarget) {
@@ -24,14 +21,12 @@ function modalCloser() {
             refs.modalBackground.removeEventListener("click", backgroundClose)
         }
     }
-
     const crossClose = (event) => {
         document.body.classList.toggle("modal-on")
         refs.modalBackground.removeEventListener("click", backgroundClose)
         window.removeEventListener("keydown", modalEsc)
         refs.modalClose.removeEventListener("click", crossClose)
     }
-
     const modalEsc = (event) => {
         if (event.key === "Escape") {
             if (document.body.classList.contains("modal-on")) {
@@ -42,116 +37,56 @@ function modalCloser() {
             }
         }
     }
-
     refs.modalBackground.addEventListener("click", backgroundClose)
-
     refs.modalClose.addEventListener("click", crossClose)
-
     window.addEventListener("keydown", modalEsc)
 }
-
 // Накидує на картки лістенери для модалки:
-
 export function modalListener() {
     const modalOpener = (event) => {
         let dataSource = event.currentTarget.dataset.id
         render(dataSource)
         renderMovie(dataSource)
-
         document.body.classList.toggle("modal-on")
-
         // Modal population function goes here. Don't forget the spinner.
-        console.log("link to id for modal" + dataSource)
+        // console.log("link to id for modal" + dataSource)
         modalCloser()
     }
-
     refs.galleryCards = document.querySelectorAll(".gallery__card")
-
     refs.galleryCards.forEach((element) => {
         element.addEventListener("click", modalOpener)
     })
 }
-
+// refs for modal revalue
 const modalPoster = document.querySelector(".modal__poster")
 const modalTitle = document.querySelector(".modal__title")
-
+const modalTextAbout = document.querySelector(".modal__text")
+const modalPopularity = document.querySelector(".modal__popularity .value")
+const modalTextGenres = document.querySelector(".modal__genre .value")
+const modalOriginalTitle = document.querySelector(".modal__original .value")
+const valueRating = document.querySelector(".value__votes .rating")
+const valueVotes = document.querySelector(".value__votes .rating__votes")
 function renderMovie(response) {
-    console.log(response)
-    const { title, vote_average, vote_count, poster_path, popularity, original_title, overview } = response
-
-    console.log(poster_path)
-
-    // const allGenres = genres.map((genre) => genre.name).join(", ")
-    // console.log(allGenres)
-
-    return /*html*/ `<div class="overlay">
-    <div class="modal">
-      <button type="button" class="modal__close"></button>
-      <div class="modal__content">
-        <div class="modal__media">
-        ${(modalPoster.src = `https://image.tmdb.org/t/p/w300${poster_path}`)}
-        </div>
-        <div class="modal__details">
-          ${(modalTitle.textContent = `${title}`)}
-          <ul class="modal__stats">
-            <li class="modal__votes">
-              <span class="data">Vote / Votes</span>
-              <div class="value value__votes">
-                <div class="rating">9.5</div>
-                <div class="data separator">/</div>
-                <div class="rating rating__votes">9001</div>
-              </div>
-            </li>
-            <li class="modal__popularity">
-              <span class="data">${popularity}</span>
-              <span class="value">1488</span>
-            </li>
-            <li class="modal__original">
-              <span class="data">Original Title</span>
-              <span class="value value__title">Text</span>
-            </li>
-            <li class="modal__genre">
-              <span class="data">Documentary</span>
-              
-            </li>
-          </ul>
-          <div class="modal__description">
-            <p>ABOUT</p>
-            <p class="modal__text">
-              Little is known about the majority of the Emperor's life; of who he
-              was and what he did before he emerged as the great Emperor of
-              Mankind, only the Emperor himself remembers. The man who would later
-              become known as the Emperor started out humbly - peacefully serving
-              as sixth President of Ukraine. But one cold February morning
-              everything changed... This is a story of his ascension to Godhood.
-              Ave Imperator, morituri te salutant!
-            </p>
-          </div>
-          <div class="modal__buttons">
-            <button type="button" class="button modal__watch">
-              add to Watched
-            </button>
-            <button type="button" class="button modal__queue">
-              add to queue
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="modal__spinner">
-        <img src="./img/loading.gif" alt="Loading. Please wait." />
-      </div>
-    </div>
-  </div>
-`
-}
-// <span class="value">${allGenres}</span>
-
-// Для сету постера
-// ${setPosters(poster_path)}
-function setPosters(poster) {
-    if (poster === null) {
-        return "https://wipfilms.net/wp-content/data/posters/tt0338683.jpg"
+    const { id, genres, title, vote_average, vote_count, poster_path, popularity, original_title, overview } = response
+    // Feature for genre map
+    let preparedGenres = null
+    if (genres) {
+        preparedGenres = genres.map((g) => g.name).join(", ")
     }
+    // For the poster set
+    modalPoster.src = `${
+        poster_path === null
+            ? "https://tn.fishki.net/26/upload/post/2018/04/20/2577020/afrikanskie-postery-k-gollivudskim-blokbasteram-6.jpg"
+            : "https://image.tmdb.org/t/p/w300" + `${poster_path}`
+    }`
 
-    return `https://image.tmdb.org/t/p/w300${poster_path}`
+    modalPoster.setAttribute("data-img", `${id}`)
+    modalTitle.textContent = `${title}`
+    modalTextAbout.textContent = `${overview}`
+    modalTextGenres.textContent = `${preparedGenres}`
+    modalPopularity.textContent = `${popularity}`
+    modalOriginalTitle.textContent = `${original_title}`
+    valueRating.textContent = `${Math.floor(vote_average)}`
+    valueVotes.textContent = `${vote_count}`
+    return
 }
