@@ -1,4 +1,6 @@
 import { refs } from "./refs";
+import { moviesListRenderByTopAndSearch } from "./moviesListRenderByTopAndSearch";
+import { library } from "./library-render";
 
 export function carouselListener() {
   refs.carousel.addEventListener("click", (event) => {
@@ -9,7 +11,7 @@ export function carouselListener() {
           refs.pageCurrent -= 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         }
         break;
 
@@ -19,7 +21,7 @@ export function carouselListener() {
           refs.pageCurrent += 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         }
         break;
 
@@ -28,12 +30,12 @@ export function carouselListener() {
           refs.pageCurrent += 5;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         } else {
           refs.pageCurrent = refs.pageMax;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         }
         break;
 
@@ -42,12 +44,12 @@ export function carouselListener() {
           refs.pageCurrent -= 5;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         } else {
           refs.pageCurrent = 1;
           carouselRender(refs.pageCurrent, refs.pageMax);
 
-          //Script to refresh page goes here
+          detectWTFisGoingOn();
         }
         break;
 
@@ -56,11 +58,26 @@ export function carouselListener() {
         refs.pageCurrent = pageNumber;
         carouselRender(refs.pageCurrent, refs.pageMax);
 
-        //Script to refresh page goes here
+        detectWTFisGoingOn();
 
         break;
     }
   });
+}
+
+function detectWTFisGoingOn() {
+  if (document.body.classList.contains("home")) {
+    moviesListRenderByTopAndSearch.options.page = refs.pageCurrent;
+    moviesListRenderByTopAndSearch.render();
+  }
+  if (document.body.classList.contains("library")) {
+    if (document.body.classList.contains("watched")) {
+      library.watchedRender();
+    }
+    if (document.body.classList.contains("queue")) {
+      library.queueRender();
+    }
+  }
 }
 
 export function carouselResizing() {
@@ -99,6 +116,19 @@ export function carouselRender(page, totalPages) {
     for (let i = 1; i <= totalPages; i += 1) {
       numberArray.push(i);
     }
+
+    if (totalPages <= 5) {
+      if (!refs.carouselLeft.classList.contains("hidden")) {
+        refs.carouselLeft.classList.add("hidden");
+        refs.carouselRight.classList.add("hidden");
+      }
+    } else {
+      if (refs.carouselLeft.classList.contains("hidden")) {
+        refs.carouselLeft.classList.remove("hidden");
+        refs.carouselRight.classList.remove("hidden");
+      }
+    }
+
     if (contentWidth >= 290) {
       switch (true) {
         case totalPages <= 10:
