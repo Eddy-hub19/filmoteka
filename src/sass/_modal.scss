@@ -67,6 +67,8 @@
     border: none;
     background: $main--text;
     mask-image: url(../img/close.svg);
+
+
   }
 
   &__content {
@@ -252,6 +254,10 @@
       width: 100px;
       height: 100px;
     }
+  }
+
+  body.dark__theme & {
+    background-color: #303030;
   }
 }
 
