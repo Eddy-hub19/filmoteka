@@ -29,9 +29,11 @@
     border-radius: 5px;
     background-color: $secondary--background;
 
+
     &.hidden {
       display: none;
     }
+
   }
 
   &__right {
@@ -74,4 +76,14 @@
       padding-bottom: 9px;
     }
   }
+}
+
+.carousel__left:hover,
+.carousel__right:hover,
+.carousel__left:focus,
+.carousel__right:focus
+{
+  background-color: $orange-color;
+  border-color: $orange-color;
+  color: $white-color;
 }

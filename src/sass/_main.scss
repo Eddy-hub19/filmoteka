@@ -170,11 +170,10 @@
 
   top: 270px;
   right: -10px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 10%;
   border: none;
-
   opacity: 0.7;
 
   display: flex;
@@ -192,6 +191,8 @@
     height: 40px;
   }
 }
+
+
 
 .icon__item--hidden {
   display: none;

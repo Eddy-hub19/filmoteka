@@ -30,9 +30,8 @@
 .modal {
   position: relative;
   background-color: $main--background;
-
   border-radius: 5px;
-
+  z-index: 50;
 
   @media screen and (max-width: 767px) {
     width: 280px;
@@ -281,11 +280,13 @@
     }
   }
 
+
   &__watch,
   &__queue{
     body.dark__theme & {
       color: rgb(216, 213, 213);
       border-color: rgb(216, 213, 213);
+      
     }
   }
 
