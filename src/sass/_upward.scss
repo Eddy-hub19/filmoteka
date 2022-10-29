@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 700px;
   right: 30px;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   background: url(../img/scroll-up.png);
   background-size: cover;
@@ -13,12 +13,14 @@
   visibility: hidden;
   opacity: 0;
   transition: 0.5s;
+  z-index: 100;
+ 
 }
 
 .upward.active {
   bottom: 40px;
   visibility: visible;
-  opacity: 1;
+  opacity: 0.7;
 }
 
 @-webkit-keyframes hvr-bob {
@@ -95,7 +97,8 @@
   animation-fill-mode: forwards;
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
-  background-color: #ffffff;
+  // background-color: #ffffff;
+  opacity: 1;
   border: 3px solid $main--accent;
 }
 
