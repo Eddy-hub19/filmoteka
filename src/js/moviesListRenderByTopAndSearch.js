@@ -26,6 +26,7 @@ export const moviesListRenderByTopAndSearch = {
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
     if (searchQuery === currentQuery || searchQuery === "") {
+      this.searchWarning.classList.remove("hidden");
       form.reset();
       return;
     }
