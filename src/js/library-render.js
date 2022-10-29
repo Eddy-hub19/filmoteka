@@ -23,7 +23,7 @@ watchedRender() {
             console.log(error, `Попробуйте перезагрузить страницу`);
         }
     });
-    return(movie);
+    return(movies);
     },
 
     queueRender() {
