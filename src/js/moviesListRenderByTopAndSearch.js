@@ -11,6 +11,7 @@ export const moviesListRenderByTopAndSearch = {
   paginationControlBtns: document.querySelectorAll(".js_pagination--btn"),
   searchForm: document.querySelector(".js-search__form"),
   searchWarning: document.querySelector(".search__warning"),
+  logo: document.querySelector(".navigation__logo"),
   options: {
     query: "",
     page: 1,
@@ -161,4 +162,8 @@ moviesListRenderByTopAndSearch.searchForm.addEventListener(
     moviesListRenderByTopAndSearch
   )
 );
-console.log(moviesListRenderByTopAndSearch.searchWarning);
+
+moviesListRenderByTopAndSearch.logo(
+  "click",
+  moviesListRenderByTopAndSearch.render()
+);
