@@ -52,9 +52,7 @@
     padding: 40px 12px;
   }
 
-  .animate__zoomIn{
-    animation-duration: 15000ms;;
-  }
+
 
 
   &__close {
@@ -64,7 +62,7 @@
     width: 30px;
     height: 30px;
     padding: 0;
-    border: none;
+    border: 0;
     background: $main--text;
     mask-image: url(../img/close.svg);
 
@@ -259,6 +257,42 @@
   body.dark__theme & {
     background-color: #303030;
   }
+
+  &__title,
+  &__popularity,
+  &__original,
+  &__genre,
+  &__about,
+  &__text
+  {
+    body.dark__theme & {
+      color: rgb(216, 213, 213);
+    }
+  }
+
+  &__close
+  {
+    body.dark__theme & {
+      background-color: rgb(216, 213, 213);
+    }
+    &:hover {
+      border-radius: 5px;
+      border: 1px solid $black-color;
+    }
+  }
+
+  &__watch,
+  &__queue{
+    body.dark__theme & {
+      color: rgb(216, 213, 213);
+      border-color: rgb(216, 213, 213);
+    }
+  }
+
+}
+
+.animate__zoomIn{
+  animation-duration: 2000ms;
 }
 
 // Modifiers
@@ -283,9 +317,19 @@
 
 button.active-modal-btn {
   background-color: gray;
+  border-color: gray;
+  color:$white-color;
 }
 
 .active-modal-btn:hover,
 .active-modal-btn:focus {
-  background-color: black;
+  background-color: $orange-color;
+  border-color: $orange-color;
+}
+
+.active-modal-btn:hover,
+.active-modal-btn:focus
+{
+  background-color: $orange-color;
+  border-color: $orange-color;
 }
