@@ -6,7 +6,17 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+
+  &.dark__theme {
+    background-color: #303030;
+  }
+
+  &.dark__theme .up-btn {
+    fill: $white-color;
+  }
 }
+
+
 
 .container {
   margin: 0 auto;

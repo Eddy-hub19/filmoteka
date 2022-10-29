@@ -3,6 +3,7 @@ import { library } from "./js/library-render";
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
 import { refs } from "./js/refs";
 import * as modalTeam from "./js/modal-team";
+import * as theme from './js/themeSwitcher';
 import {
   carouselListener,
   carouselResizing,
