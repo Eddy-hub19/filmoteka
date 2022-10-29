@@ -1,5 +1,6 @@
 import { refs } from "./refs"
 import TmDbApi from "./services/fetchApi"
+import genres from "./services/genres"
 
 // fetchApi for movieDetail
 const Api = new TmDbApi()
@@ -8,6 +9,8 @@ async function render(id) {
     try {
         const filmResponse = await Api.fetchMovieDetail(id)
         renderMovie(filmResponse)
+
+        // filmResponse.genres.map((genre) => genre.name)
     } catch (error) {
         console.log(error)
     }
@@ -61,7 +64,7 @@ export function modalListener() {
         document.body.classList.toggle("modal-on")
 
         // Modal population function goes here. Don't forget the spinner.
-        console.log("link to id for modal" + dataSource)
+        // console.log("link to id for modal" + dataSource)
         modalCloser()
     }
 
@@ -74,84 +77,40 @@ export function modalListener() {
 
 const modalPoster = document.querySelector(".modal__poster")
 const modalTitle = document.querySelector(".modal__title")
+const modalTextAbout = document.querySelector(".modal__text")
 
 function renderMovie(response) {
     console.log(response)
-    const { title, vote_average, vote_count, poster_path, popularity, original_title, overview } = response
+    const { id, genres, title, vote_average, vote_count, poster_path, popularity, original_title, overview } = response
+    modalPoster.src = setPosters(`${poster_path}`)
+    modalPoster.setAttribute("data-img", `${id}`)
+    modalTitle.textContent = `${title}`
+    modalTextAbout.textContent = `${overview}`
 
-    console.log(poster_path)
+    function setPosters(poster) {
+        if (poster === null) {
+            return "https://tn.fishki.net/26/upload/post/2018/04/20/2577020/afrikanskie-postery-k-gollivudskim-blokbasteram-6.jpg"
+        }
 
-    // const allGenres = genres.map((genre) => genre.name).join(", ")
-    // console.log(allGenres)
+        return "https://image.tmdb.org/t/p/w300" + `${poster_path}`
+    }
 
-    return /*html*/ `<div class="overlay">
-    <div class="modal">
-      <button type="button" class="modal__close"></button>
-      <div class="modal__content">
-        <div class="modal__media">
-        ${(modalPoster.src = `https://image.tmdb.org/t/p/w300${poster_path}`)}
-        </div>
-        <div class="modal__details">
-          ${(modalTitle.textContent = `${title}`)}
-          <ul class="modal__stats">
-            <li class="modal__votes">
-              <span class="data">Vote / Votes</span>
-              <div class="value value__votes">
-                <div class="rating">9.5</div>
-                <div class="data separator">/</div>
-                <div class="rating rating__votes">9001</div>
-              </div>
-            </li>
-            <li class="modal__popularity">
-              <span class="data">${popularity}</span>
-              <span class="value">1488</span>
-            </li>
-            <li class="modal__original">
-              <span class="data">Original Title</span>
-              <span class="value value__title">Text</span>
-            </li>
-            <li class="modal__genre">
-              <span class="data">Documentary</span>
-              
-            </li>
-          </ul>
-          <div class="modal__description">
-            <p>ABOUT</p>
-            <p class="modal__text">
-              Little is known about the majority of the Emperor's life; of who he
-              was and what he did before he emerged as the great Emperor of
-              Mankind, only the Emperor himself remembers. The man who would later
-              become known as the Emperor started out humbly - peacefully serving
-              as sixth President of Ukraine. But one cold February morning
-              everything changed... This is a story of his ascension to Godhood.
-              Ave Imperator, morituri te salutant!
-            </p>
-          </div>
-          <div class="modal__buttons">
-            <button type="button" class="button modal__watch">
-              add to Watched
-            </button>
-            <button type="button" class="button modal__queue">
-              add to queue
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="modal__spinner">
-        <img src="./img/loading.gif" alt="Loading. Please wait." />
-      </div>
-    </div>
-  </div>
-`
+    return
 }
 // <span class="value">${allGenres}</span>
 
 // Для сету постера
 // ${setPosters(poster_path)}
-function setPosters(poster) {
-    if (poster === null) {
-        return "https://wipfilms.net/wp-content/data/posters/tt0338683.jpg"
-    }
 
-    return `https://image.tmdb.org/t/p/w300${poster_path}`
-}
+// const allGenres = genres.map((genre) => genre.name).join(", ")
+// console.log(allGenres)
+
+// Функція для мапу жанрів
+// function calculatingGenres(genres) {
+//   const sortGenres = genres.map((genre) => genre.name)
+//   if (sortGenres.length > 2) {
+//       return [...sortGenres.slice(0, 2), "Other"]
+//   } else {
+//       return sortGenres
+//   }
+// }
