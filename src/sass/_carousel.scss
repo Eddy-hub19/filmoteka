@@ -28,6 +28,10 @@
     height: 40px;
     border-radius: 5px;
     background-color: $secondary--background;
+
+    &.hidden {
+      display: none;
+    }
   }
 
   &__right {
