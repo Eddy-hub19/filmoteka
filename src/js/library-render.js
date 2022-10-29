@@ -26,6 +26,7 @@ watchedRender() {
 
 queueRender() {
     const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
+    
     const movies = [];
 
     queueMoviesID.map(async (movieId) => {
@@ -53,11 +54,13 @@ preparingForMarkUp(movies) {
     );
     },
 
+
 createMarkUp(preparedMovies) {
     const { movieList } = this;
     const moviesMarkUp = preparedMovies
     .map(({ id, title, poster_path, vote_average, release_date, genres }) => {
         return `<li class="gallery__card" data-id=${id}>
+
             <img
             src=${poster_path}
             data-source=${poster_path}
@@ -68,8 +71,10 @@ createMarkUp(preparedMovies) {
             <div class="gallery__data">
             <div class="gallery__name">${title}</div>
             <div class="gallery__stats">
+
                 <p class="gallery__details">${genres.join(", ")} | ${release_date[0]}</p>
-                <p p class="gallery__rating">${vote_average.toFixed(1)}</p>
+                <p class="gallery__rating">${vote_average.toFixed(1)}</p>
+
             </div>
             </div>
         </li>`;
@@ -79,13 +84,15 @@ createMarkUp(preparedMovies) {
     modalListener();
     },
 
+
 calculatingGenres(genre_ids) {
     const sortGenres = genre_ids.map((genre) => genre.name);
+
     
     if (sortGenres.length > 2) {
     return [...sortGenres.slice(0, 2), "Other"];
     } else {
     return sortGenres;
     }
-    },
 };
+

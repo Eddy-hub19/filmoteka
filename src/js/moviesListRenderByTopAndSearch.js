@@ -1,7 +1,26 @@
 import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
-
+import Handlebars from "handlebars";
+console.log(Handlebars);
+const template = Handlebars.compile(``);
+console.log(
+  template(`
+    <div class="color-card">
+      <div
+        class="color-swatch"
+        data-hex="{{hex}}"
+        data-rgb="{{rgb}}"
+        style="background-color: {{hex}}"
+      ></div>
+      <div class="color-meta">
+        <p>HEX: {{ hex }}</p>
+        <p>RGB: {{ rgb }}</p>
+      </div>
+    </div>`)
+);
+// import colorCardTpl from "../templates/color-card.hbs";
+// console.log(template(`../templates/color-card.hbs`));
 const Api = new TmDbApi();
 export const defaultPoster =
   "https://tn.fishki.net/26/upload/post/2018/04/20/2577020/afrikanskie-postery-k-gollivudskim-blokbasteram-6.jpg";
@@ -173,3 +192,5 @@ moviesListRenderByTopAndSearch.logo.addEventListener("click", () => {
 moviesListRenderByTopAndSearch.navigationHomeBtn.addEventListener(`click`, () =>
   moviesListRenderByTopAndSearch.render()
 );
+
+console.log(Api.fetchMovieTrailer(11));
