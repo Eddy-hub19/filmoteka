@@ -4,6 +4,7 @@ import { modalListener } from "./modal";
 
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
+import { library } from "./library-render";
 
 const Api = new TmDbApi();
 export const defaultPoster =
@@ -50,10 +51,12 @@ export const moviesListRenderByTopAndSearch = {
         refs.pageMax = filmResponse.total_pages;
         refs.pageCurrent = options.page;
         carouselRender(refs.pageCurrent, refs.pageMax);
+        library.resetLibrary();
 
         const films = filmResponse.results;
         if (films.length === 0) {
           this.searchWarning.classList.remove("hidden");
+          library.createEmptyGalleryMarkUp();
         } else {
           this.searchWarning.classList.add("hidden");
         }
@@ -69,6 +72,7 @@ export const moviesListRenderByTopAndSearch = {
         refs.pageMax = filmResponse.total_pages;
         refs.pageCurrent = options.page;
         carouselRender(refs.pageCurrent, refs.pageMax);
+        library.resetLibrary();
 
         const films = filmResponse.results;
         this.createMarkUp(this.preparingForMarkUp(films));

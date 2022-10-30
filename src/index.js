@@ -41,8 +41,13 @@ refs.libraryButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("home", "library");
 
-  refs.pageCurrent = 1;
-  library.watchedRender();
+  if (document.body.classList.contains("watched")) {
+    refs.pageCurrent = 1;
+    library.watchedRender();
+  } else {
+    refs.pageCurrent = 1;
+    library.queueRender();
+  }
 });
 
 refs.watchedButton.addEventListener("click", () => {
