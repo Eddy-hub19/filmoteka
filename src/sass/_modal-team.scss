@@ -68,7 +68,8 @@
 
 .modal-team__container {           
     height: 100%;    
-    overflow: auto;    
+    overflow: auto;
+    margin-bottom: 30px;    
     -ms-overflow-style: none;
         scrollbar-width: none;
 }
@@ -266,4 +267,23 @@
     }
 }
 
+.text-gh {
+    position: relative;
+}
 
+.text-position {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.0);
+    display: flex;
+    justify-content: space-between;
+
+    transition: color 250ms;
+
+&:hover,
+&:focus {
+    color: #ff6b08;
+    
+  }
+}
