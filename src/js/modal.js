@@ -1,48 +1,99 @@
-import { refs } from "./refs"
-import TmDbApi from "./services/fetchApi"
+import { refs } from "./refs";
+import TmDbApi from "./services/fetchApi";
+import { fetchYoutubeApi } from "./services/fetchYoutubeApi";
+import { hideLoader, showLoader } from "./spinner";
 
 // fetchApi for movieDetail
-const Api = new TmDbApi()
+
+const Api = new TmDbApi();
+const fetchYoutube = new fetchYoutubeApi();
+
 async function render(id) {
-    try {
-        const filmResponse = await Api.fetchMovieDetail(id)
-        renderMovie(filmResponse)
-    } catch (error) {
-        console.log(error)
-    }
+  try {
+    showLoader();
+    const filmResponse = await Api.fetchMovieDetail(id);
+    renderMovie(filmResponse);
+  } catch (error) {
+    console.log(error);
+  }
+  hideLoader();
 }
 // Це для накидування лістенерів для закриття модалки:
 function modalCloser() {
-    const backgroundClose = (event) => {
-        if (event.target == event.currentTarget) {
-            document.body.classList.toggle("modal-on")
-            refs.modalClose.removeEventListener("click", crossClose)
-            window.removeEventListener("keydown", modalEsc)
-            refs.modalBackground.removeEventListener("click", backgroundClose)
-        }
+  const backgroundClose = (event) => {
+    if (event.target == event.currentTarget) {
+      document.body.classList.toggle("modal-on");
+
+      refs.modalClose.removeEventListener("click", crossClose);
+      window.removeEventListener("keydown", modalEsc);
+      refs.modalBackground.removeEventListener("click", backgroundClose);
     }
-    const crossClose = (event) => {
-        document.body.classList.toggle("modal-on")
-        refs.modalBackground.removeEventListener("click", backgroundClose)
-        window.removeEventListener("keydown", modalEsc)
-        refs.modalClose.removeEventListener("click", crossClose)
+  };
+
+  const crossClose = (event) => {
+    document.body.classList.toggle("modal-on");
+
+    refs.modalBackground.removeEventListener("click", backgroundClose);
+    window.removeEventListener("keydown", modalEsc);
+    refs.modalClose.removeEventListener("click", crossClose);
+  };
+
+  const modalEsc = (event) => {
+    if (event.key === "Escape") {
+      if (document.body.classList.contains("modal-on")) {
+        document.body.classList.toggle("modal-on");
+        refs.modalBackground.removeEventListener("click", backgroundClose);
+        refs.modalClose.removeEventListener("click", crossClose);
+        window.removeEventListener("keydown", modalEsc);
+      }
     }
-    const modalEsc = (event) => {
-        if (event.key === "Escape") {
-            if (document.body.classList.contains("modal-on")) {
-                document.body.classList.toggle("modal-on")
-                refs.modalBackground.removeEventListener("click", backgroundClose)
-                refs.modalClose.removeEventListener("click", crossClose)
-                window.removeEventListener("keydown", modalEsc)
-            }
-        }
-    }
-    refs.modalBackground.addEventListener("click", backgroundClose)
-    refs.modalClose.addEventListener("click", crossClose)
-    window.addEventListener("keydown", modalEsc)
+  };
+
+  refs.modalBackground.addEventListener("click", backgroundClose);
+
+  refs.modalClose.addEventListener("click", crossClose);
+
+  window.addEventListener("keydown", modalEsc);
 }
 // Накидує на картки лістенери для модалки:
 export function modalListener() {
+  const modalOpener = (event) => {
+    let dataSource = event.currentTarget.dataset.id;
+    render(dataSource);
+    renderMovie(dataSource);
+
+    document.body.classList.toggle("modal-on");
+
+    // Modal population function goes here. Don't forget the spinner.
+    console.log("link to id for modal" + dataSource);
+    modalCloser();
+  };
+
+  refs.galleryCards = document.querySelectorAll(".gallery__card");
+
+  refs.galleryCards.forEach((element) => {
+    element.addEventListener("click", modalOpener);
+  });
+}
+
+const modalPoster = document.querySelector(".modal__poster");
+const modalTitle = document.querySelector(".modal__title");
+const modalTrailerEl = document.querySelector(".js-trailer");
+
+function renderMovie(response) {
+  console.log(response);
+  const {
+    title,
+    vote_average,
+    vote_count,
+    poster_path,
+    popularity,
+    original_title,
+    overview,
+  } = response;
+
+  console.log(poster_path);
+
     const modalOpener = (event) => {
         let dataSource = event.currentTarget.dataset.id
         render(dataSource)
@@ -86,7 +137,7 @@ function renderMovie(response) {
     modalTextGenres.textContent = `${preparedGenres}`
     modalPopularity.textContent = `${popularity}`
     modalOriginalTitle.textContent = `${original_title}`
-    valueRating.textContent = `${Math.floor(vote_average)}`
+    valueRating.textContent = `${Number(vote_average).toFixed(1)}`
     valueVotes.textContent = `${vote_count}`
     return
 }
