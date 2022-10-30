@@ -42,7 +42,7 @@ refs.homeButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("library", "home");
 
-  refs.pageCurrent = 1;
+  moviesListRenderByTopAndSearch.options.page = 1;
   moviesListRenderByTopAndSearch.render();
 });
 
