@@ -1,6 +1,6 @@
-API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
+const API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
 //API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
-API_BASE_URL = "https://youtube.googleapis.com/youtube/v3/search?";
+const API_BASE_URL = "https://youtube.googleapis.com/youtube/v3/search?";
 
 export class fetchYoutubeApi {
   async getTrailer(title) {
