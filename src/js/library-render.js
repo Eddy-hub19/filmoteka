@@ -105,7 +105,7 @@ export const library = {
       }
     });
       }
-      this.createEmptyGalleryMarkUp();
+      this.createEmptyQueueMarkUp();
   },
 
   preparingForMarkUp(movies) {
@@ -157,6 +157,10 @@ export const library = {
 
     createEmptyGalleryMarkUp() {
         refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your gallery is empty. <br>Choose your first movie!</p>`;
+        refs.libraryContent.classList.add("library__empty");
+    },
+    createEmptyQueueMarkUp() {
+        refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your queue is empty. <br>Choose your first movie!</p>`;
         refs.libraryContent.classList.add("library__empty");
     },
     
