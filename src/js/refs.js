@@ -7,6 +7,7 @@ export const refs = {
   queueButton: document.querySelector(".button__queue"),
   gallery: document.querySelector(".gallery"),
   galleryCards: document.querySelectorAll(".gallery__card"),
+  libraryContent: document.querySelector(".content"),
   carousel: document.querySelector(".carousel__container"),
   carouselLeft: document.querySelector(".carousel__left"),
   carouselRight: document.querySelector(".carousel__right"),
