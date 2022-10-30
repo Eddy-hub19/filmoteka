@@ -1,11 +1,9 @@
 import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
-import Handlebars from "handlebars";
+
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
-
-const template = Handlebars.compile(``);
 
 const Api = new TmDbApi();
 export const defaultPoster =
@@ -19,7 +17,6 @@ export const moviesListRenderByTopAndSearch = {
     query: "",
     page: 1,
     totalPages: null,
-    // per_page: 15,
   },
   onSearchForm(event) {
     event.preventDefault();
@@ -27,8 +24,10 @@ export const moviesListRenderByTopAndSearch = {
     const currentQuery = this.options.query;
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
-    if (searchQuery === currentQuery || searchQuery === "") {
+    if (searchQuery === "") {
       this.searchWarning.classList.remove("hidden");
+    }
+    if (searchQuery === currentQuery || searchQuery === "") {
       form.reset();
       return;
     }
@@ -149,3 +148,12 @@ moviesListRenderByTopAndSearch.searchForm.addEventListener(
     moviesListRenderByTopAndSearch
   )
 );
+refs.logo.addEventListener("click", () => {
+  (moviesListRenderByTopAndSearch.options.query = ""),
+    (moviesListRenderByTopAndSearch.options.page = 1),
+    moviesListRenderByTopAndSearch.render(),
+    carouselRender(
+      moviesListRenderByTopAndSearch.options.page,
+      moviesListRenderByTopAndSearch.options.totalPages
+    );
+});
