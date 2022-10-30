@@ -11,7 +11,8 @@ export const library = {
   },
 
     watchedRender() {
-    this.resetLibrary();
+      this.resetLibrary();
+      
     const { movieList } = this;
     //   refs.libraryContent.innerHTML = `<ul class="gallery"></ul>`;
     //   refs.libraryContent.classList.remove("library__empty");
@@ -26,54 +27,55 @@ export const library = {
       //...........................................................................
     
     const watchedMoviesID = JSON.parse(localStorage.getItem("storage")).watched;
-        if (watchedMoviesID.length !== 0) {
-        const movies = [];
-
-        var iterator = 0;
-        const moviesAmount = watchedMoviesID.length;
-        refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
-        carouselRender(refs.pageCurrent, refs.pageMax);
-
-        refs.moviesRemaining = watchedMoviesID;
-        if (refs.pageCurrent > 1) {
-            refs.moviesRemaining = watchedMoviesID.slice(
-                (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-                watchedMoviesID.length - 1
-            );
-        }
-
-        refs.moviesRemaining.map(async (movieId) => {
-            try {
-                const movie = await Api.fetchMovieDetail(movieId);
-                iterator += 1;
-                movies.push(movie);
-                if (iterator === refs.moviesPerPage) {
-                    this.createMarkUp(this.preparingForMarkUp(movies));
-                }
-                if (
-                    iterator < refs.moviesPerPage &&
-                    movies.length === refs.moviesRemaining.length
-                ) {
-                    this.createMarkUp(this.preparingForMarkUp(movies));
-                }
-            } catch (error) {
-                console.log(error, `Попробуйте перезагрузить страницу`);
-            }
-        });
+        if (watchedMoviesID.length === 0) {
+        this.createEmptyGalleryMarkUp();
     }
-    this.createEmptyGalleryMarkUp();
+    const movies = [];
+
+      var iterator = 0;
+      const moviesAmount = watchedMoviesID.length;
+      refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+      carouselRender(refs.pageCurrent, refs.pageMax);
+
+      refs.moviesRemaining = watchedMoviesID;
+      if (refs.pageCurrent > 1) {
+          refs.moviesRemaining = watchedMoviesID.slice(
+              (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
+              watchedMoviesID.length - 1
+          );
+      }
+
+      refs.moviesRemaining.map(async (movieId) => {
+          try {
+              const movie = await Api.fetchMovieDetail(movieId);
+              iterator += 1;
+              movies.push(movie);
+              if (iterator === refs.moviesPerPage) {
+                  this.createMarkUp(this.preparingForMarkUp(movies));
+              }
+              if (
+                  iterator < refs.moviesPerPage &&
+                  movies.length === refs.moviesRemaining.length
+              ) {
+                  this.createMarkUp(this.preparingForMarkUp(movies));
+              }
+          } catch (error) {
+              console.log(error, `Попробуйте перезагрузить страницу`);
+          }
+      });
   },
 
     queueRender() {
-        this.resetLibrary();
+      this.resetLibrary();
+      const { movieList } = this;
     
       const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
-      console.log(queueMoviesID.length);
-      if (queueMoviesID.length !== 0) {
-    
-    const movies = [];
+      const movies = [];
 
-    var iterator = 0;
+      if (queueMoviesID.length === 0) {
+      this.createEmptyQueueMarkUp();
+      } 
+      var iterator = 0;
     const moviesAmount = queueMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
     carouselRender(refs.pageCurrent, refs.pageMax);
@@ -104,8 +106,7 @@ export const library = {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
     });
-      }
-      this.createEmptyQueueMarkUp();
+      
   },
 
   preparingForMarkUp(movies) {
@@ -122,8 +123,6 @@ export const library = {
   },
 
     createMarkUp(preparedMovies) {
-    console.log(preparedMovies);
-    // const { movieList } = this;
         const moviesMarkUp = preparedMovies
       .map(({ id, title, poster_path, vote_average, release_date, genres }) => {
         return `<li class="gallery__card" data-id=${id}>
@@ -155,11 +154,12 @@ export const library = {
         modalListener();
   },
 
-    createEmptyGalleryMarkUp() {
+  createEmptyGalleryMarkUp() {
         refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your gallery is empty. <br>Choose your first movie!</p>`;
         refs.libraryContent.classList.add("library__empty");
-    },
-    createEmptyQueueMarkUp() {
+  },
+    
+  createEmptyQueueMarkUp() {
         refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your queue is empty. <br>Choose your first movie!</p>`;
         refs.libraryContent.classList.add("library__empty");
     },
