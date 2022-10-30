@@ -1,9 +1,10 @@
 import { library } from "./js/library-render";
-
+import { spinner } from "./js/spinner";
+import { handleClick } from "./js/modal-trailer";
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
 import { refs } from "./js/refs";
 import * as modalTeam from "./js/modal-team";
-import * as theme from './js/themeSwitcher';
+import * as theme from "./js/themeSwitcher";
 import {
   carouselListener,
   carouselResizing,
