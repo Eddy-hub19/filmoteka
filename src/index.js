@@ -27,62 +27,51 @@ scrollTop();
 
 import { addToWatch } from "./js/library-list";
 
-// Initial gallery population function goes here
-
 moviesListRenderByTopAndSearch.render();
 
 refs.logo.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.className = "home watched";
 
-  //Gallery population function for this page goes here
+  refs.searchBox.value = "";
+  moviesListRenderByTopAndSearch.options.query = "";
+  moviesListRenderByTopAndSearch.options.page = 1;
+  moviesListRenderByTopAndSearch.render();
 });
 
 refs.homeButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("library", "home");
 
-  //Gallery population function for this page goes here
+  moviesListRenderByTopAndSearch.options.page = 1;
+  moviesListRenderByTopAndSearch.render();
 });
 
 refs.libraryButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("home", "library");
+
+  refs.pageCurrent = 1;
   library.watchedRender();
-  //Gallery population function for this page goes here
 });
 
 refs.watchedButton.addEventListener("click", () => {
   document.body.classList.replace("queue", "watched");
+
+  refs.pageCurrent = 1;
   library.watchedRender();
-  //Gallery population function for this page goes here
 });
 
 refs.queueButton.addEventListener("click", () => {
   document.body.classList.replace("watched", "queue");
+
+  refs.pageCurrent = 1;
   library.queueRender();
-  //Gallery population function for this page goes here
 });
-
-refs.modalWatch.addEventListener("click", () => {
-  // Watch list update function goes here
-});
-
-refs.modalQueue.addEventListener("click", () => {
-  // Queue update function goes here
-});
-
-// Pages selector functions
 
 carouselListener();
 
 carouselResizing();
-
-carouselRender(refs.pageCurrent, refs.pageMax);
-
-// Functions
-
-// LazyLoad:
 
 function lazyLoad() {
   refs.galleryCards = document.querySelectorAll(".gallery__card");

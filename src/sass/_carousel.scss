@@ -28,6 +28,12 @@
     height: 40px;
     border-radius: 5px;
     background-color: $secondary--background;
+    border: 1px solid $black-color;
+
+    &.hidden {
+      display: none;
+    }
+
   }
 
   &__right {
@@ -70,4 +76,14 @@
       padding-bottom: 9px;
     }
   }
+}
+
+.carousel__left:hover,
+.carousel__right:hover,
+.carousel__left:focus,
+.carousel__right:focus
+{
+  background-color: $orange-color;
+  border-color: $orange-color;
+  color: $white-color;
 }
