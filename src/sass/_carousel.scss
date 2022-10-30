@@ -35,6 +35,16 @@
       display: none;
     }
 
+
+    &:hover {
+      background-color: $main--accent;
+      border: none;
+
+      & img {
+        filter: invert(1);
+      }
+    }
+
   }
 
   &__right {
@@ -73,8 +83,13 @@
       color: $main--background;
     }
 
-    &.more {
+    &.more__left,
+    &.more__right {
       padding-bottom: 9px;
+    }
+
+    &:hover {
+      transform: scale(1.3);
     }
   }
 }

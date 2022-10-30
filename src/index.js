@@ -1,5 +1,6 @@
 import { library } from "./js/library-render";
-
+import { spinner } from "./js/spinner";
+import { handleClick } from "./js/modal-trailer";
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
 import { refs } from "./js/refs";
 import * as modalTeam from "./js/modal-team";
@@ -28,19 +29,11 @@ import { addToWatch } from "./js/library-list";
 
 moviesListRenderByTopAndSearch.render();
 
-refs.logo.addEventListener("click", (event) => {
-  event.preventDefault();
-  document.body.className = "home watched";
-
-  refs.pageCurrent = 1;
-  moviesListRenderByTopAndSearch.render();
-});
-
 refs.homeButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("library", "home");
 
-  refs.pageCurrent = 1;
+  moviesListRenderByTopAndSearch.options.page = 1;
   moviesListRenderByTopAndSearch.render();
 });
 

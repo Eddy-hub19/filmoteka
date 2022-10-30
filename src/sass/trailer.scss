@@ -1,0 +1,32 @@
+.modal__trailer {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @media screen and (max-height: 520px) {
+    align-items: start;
+  }
+}
+.woch__trailer {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  color: $main--background;
+  font-weight: 500;
+  font-size: 20px;
+  animation: scaler;
+  animation-duration: 2500ms;
+  animation-iteration-count: infinite;
+}
+@keyframes scaler {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

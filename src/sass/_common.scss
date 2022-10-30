@@ -15,9 +15,9 @@ body {
     fill: $white-color;
   }
 }
-
-
-
+.trailer__visible {
+  overflow-y: hidden;
+}
 .container {
   margin: 0 auto;
   width: 100%;
@@ -62,4 +62,9 @@ ul {
     border-color: $main--accent;
     color: $main--background;
   }
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
