@@ -32,7 +32,9 @@ refs.logo.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.className = "home watched";
 
-  refs.pageCurrent = 1;
+  refs.searchBox.value = "";
+  moviesListRenderByTopAndSearch.options.query = "";
+  moviesListRenderByTopAndSearch.options.page = 1;
   moviesListRenderByTopAndSearch.render();
 });
 
