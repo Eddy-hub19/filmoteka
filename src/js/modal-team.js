@@ -1,5 +1,3 @@
-
-
 const team = document.querySelector('.footer-text__link');
 const backdropTeam = document.querySelector('.backdrop-team');
 const closeTeam = document.querySelector('.modal-team__button');

@@ -1,9 +1,11 @@
-@import './utils/mixins';
-@import './utils/variables';
-@import './modal-team';
-@import './utils/placeholders';
+@import "./utils/mixins";
+@import "./utils/variables";
+@import "./modal-team";
+@import "./utils/placeholders";
 
 @import "./vars";
+@import "./spinner";
+@import "./trailer";
 @import "./common";
 @import "./header";
 @import "./main";
@@ -11,6 +13,3 @@
 @import "./footer";
 @import "./carousel";
 @import "./upward";
-
-
-

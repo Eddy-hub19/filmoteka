@@ -1,52 +1,67 @@
 import { refs } from "./refs";
+// import { save, load } from "./services/storage";
 
-// const LOCAL_STORAGE_DATA = {
-//   watched: [],
-//   que: [],
-// };
+export function checkStorage() {
+  if (!localStorage.getItem("storage")) {
+    const LOCAL_STORAGE_DATA = {
+      watched: [],
+      que: [],
+    };
 
-// localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
+    localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
+  }
+}
 
-// парсимо інфу зі стореджа
+checkStorage();
 
-const savedSettings = localStorage.getItem("storage");
-let parsedSettings = JSON.parse(savedSettings);
-console.log(parsedSettings);
-
-// let filmId = refs.modalImg.dataset.img;
+const savedStorage = localStorage.getItem("storage");
+let parsedStorage = JSON.parse(savedStorage);
+console.log(parsedStorage);
 
 export function addToWatch(e) {
   let filmId = refs.modalImg.dataset.img;
 
-  if (parsedSettings.watched.indexOf(filmId) === -1) {
-    parsedSettings.watched.push(filmId);
-    localStorage.setItem("storage", JSON.stringify(parsedSettings));
-    refs.modalWatch.classList.add("active-modal-btn");
+  if (parsedStorage.watched.indexOf(filmId) === -1) {
+    parsedStorage.watched.push(filmId);
+    localStorage.setItem("storage", JSON.stringify(parsedStorage));
+    refs.modalWatch.textContent = "You alraedy done with it";
     return;
   }
 
-  parsedSettings.watched.splice(
-    parsedSettings.watched.indexOf(filmId, 1)
-  );
-  refs.modalWatch.classList.remove("active-modal-btn");
-  localStorage.setItem("storage", JSON.stringify(parsedSettings));
+  parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId, 1));
+  refs.modalWatch.textContent = "Add to watched";
+  localStorage.setItem("storage", JSON.stringify(parsedStorage));
 }
 
 export function addToQue(e) {
   let filmId = refs.modalImg.dataset.img;
-  refs.modalQueue.classList.add("active-modal-btn");
-  if (parsedSettings.que.indexOf(filmId) === -1) {
-    parsedSettings.que.push(filmId);
-    localStorage.setItem("storage", JSON.stringify(parsedSettings));
+  refs.modalQueue.textContent = "already in queue";
+  if (parsedStorage.que.indexOf(filmId) === -1) {
+    parsedStorage.que.push(filmId);
+    localStorage.setItem("storage", JSON.stringify(parsedStorage));
     return;
   }
 
-  parsedSettings.que.splice(parsedSettings.que.indexOf(filmId, 1));
-  localStorage.setItem("storage", JSON.stringify(parsedSettings));
-  refs.modalQueue.classList.remove("active-modal-btn");
+  parsedStorage.que.splice(parsedStorage.que.indexOf(filmId, 1));
+  localStorage.setItem("storage", JSON.stringify(parsedStorage));
+  refs.modalQueue.textContent = "Add to queue";
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
 refs.modalWatch.addEventListener("click", addToWatch);
-// 779782, 718930, 619730
-// 616820, 913290, 616037
+
+export function checkWatchedFilm() {
+  let filmId = refs.modalImg.dataset.img;
+
+  return parsedStorage.watched.includes(filmId)
+    ? (refs.modalWatch.textContent = "You alraedy done with it")
+    : (refs.modalWatch.textContent = "Add to watched");
+}
+
+export function checkQueue() {
+  let filmId = refs.modalImg.dataset.img;
+
+  return parsedStorage.que.includes(filmId)
+    ? (refs.modalQueue.textContent = "already in queue")
+    : (refs.modalQueue.textContent = "Add to queue");
+}
