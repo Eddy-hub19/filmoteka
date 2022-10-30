@@ -35,7 +35,6 @@
       display: none;
     }
 
-
     &:hover {
       background-color: $main--accent;
       border: none;
@@ -45,6 +44,14 @@
       }
     }
 
+    body.dark__theme & {
+      background-color: $secondary--text;
+
+      &:hover {
+        background-color: $main--accent;
+        border: none;
+      }
+    }
   }
 
   &__right {
@@ -91,15 +98,9 @@
     &:hover {
       transform: scale(1.3);
     }
-  }
-}
 
-.carousel__left:hover,
-.carousel__right:hover,
-.carousel__left:focus,
-.carousel__right:focus
-{
-  background-color: $orange-color;
-  border-color: $orange-color;
-  color: $white-color;
+    body.dark__theme & {
+      color: rgb(216, 213, 213);
+    }
+  }
 }

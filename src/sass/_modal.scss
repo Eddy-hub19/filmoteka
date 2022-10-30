@@ -70,6 +70,7 @@
   }
 
   &__media {
+    position: relative;
     display: inherit;
     flex-direction: column;
 
@@ -89,6 +90,26 @@
       width: 375px;
       height: 478px;
       margin-right: 16px;
+    }
+
+    &.trailer {
+      position: relative;
+
+      &::after {
+        opacity: 0.9;
+        pointer-events: none;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75px;
+        height: 50px;
+        background-image: url(../img/youtube_logo.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     }
   }
 
