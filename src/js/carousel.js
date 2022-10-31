@@ -121,6 +121,14 @@ export function carouselResizing() {
 }
 
 export function carouselRender(page, totalPages) {
+  refs.carouselLeft.classList.remove("disabled");
+  refs.carouselRight.classList.remove("disabled");
+  if (page === 1) {
+    refs.carouselLeft.classList.add("disabled");
+  }
+  if (page === totalPages) {
+    refs.carouselRight.classList.add("disabled");
+  }
   if (page <= totalPages && page >= 1) {
     const carouselContent = document.querySelector(".carousel__content");
     const numberArray = [];

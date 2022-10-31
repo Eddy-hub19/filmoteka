@@ -14,7 +14,7 @@ export const library = {
     this.resetLibrary();
     const { movieList } = this;
     const watchedMoviesID = JSON.parse(localStorage.getItem("storage")).watched;
-    if (watchedMoviesID.length === 0) {
+    if (!watchedMoviesID.length) {
       this.createEmptyGalleryMarkUp();
     }
     const movies = [];
@@ -22,6 +22,9 @@ export const library = {
     var iterator = 0;
     const moviesAmount = watchedMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = watchedMoviesID;
@@ -59,12 +62,15 @@ export const library = {
     const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
     const movies = [];
 
-    if (queueMoviesID.length === 0) {
+    if (!queueMoviesID.length) {
       this.createEmptyQueueMarkUp();
     }
     var iterator = 0;
     const moviesAmount = queueMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = queueMoviesID;
