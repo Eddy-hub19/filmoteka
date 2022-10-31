@@ -56,7 +56,7 @@ export const moviesListRenderByTopAndSearch = {
         const films = filmResponse.results;
         if (films.length === 0) {
           this.searchWarning.classList.remove("hidden");
-          library.createEmptyGalleryMarkUp();
+          carouselRender(1, 1);
         } else {
           this.searchWarning.classList.add("hidden");
         }
