@@ -361,7 +361,7 @@ button.active-modal-btn {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(92, 87, 87, 0.484);
+  // -webkit-box-shadow: inset 0 0 6px rgba(92, 87, 87, 0.484);
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
@@ -371,7 +371,7 @@ button.active-modal-btn {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #ff6b08b1;
-  -webkit-box-shadow: inset 0 0 6px rgba(128, 124, 124, 0.5);
+  // -webkit-box-shadow: inset 0 0 6px rgba(128, 124, 124, 0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(104, 99, 99, 0.877);
