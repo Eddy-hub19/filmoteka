@@ -1,6 +1,7 @@
 import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
+import { hideLoader, showLoader } from "./spinner";
 
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
@@ -45,6 +46,7 @@ export const moviesListRenderByTopAndSearch = {
 
     if (query) {
       try {
+        showLoader();
         const filmResponse = await Api.fetchSearchMovies(query, page);
         options.totalPages = filmResponse.total_pages;
 
@@ -61,11 +63,15 @@ export const moviesListRenderByTopAndSearch = {
           this.searchWarning.classList.add("hidden");
         }
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
     } else {
       try {
+        showLoader();
         const filmResponse = await Api.fetchTrendingMovies(page);
         options.totalPages = filmResponse.total_pages;
 
@@ -76,6 +82,9 @@ export const moviesListRenderByTopAndSearch = {
 
         const films = filmResponse.results;
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
