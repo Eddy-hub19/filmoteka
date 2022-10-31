@@ -1,4 +1,5 @@
 import { refs } from "./refs";
+import { library } from "./library-render";
 // import { save, load } from "./services/storage";
 
 export function checkStorage() {
@@ -28,9 +29,11 @@ export function addToWatch(e) {
     return;
   }
 
-  parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId, 1));
+  parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId), 1);
   refs.modalWatch.textContent = "Add to watched";
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
+  // document.querySelector(`[data-id="${filmId}"]`).remove();
+  library.watchedRender();
 }
 
 export function addToQue(e) {
@@ -42,9 +45,11 @@ export function addToQue(e) {
     return;
   }
 
-  parsedStorage.que.splice(parsedStorage.que.indexOf(filmId, 1));
+  parsedStorage.que.splice(parsedStorage.que.indexOf(filmId), 1);
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
   refs.modalQueue.textContent = "Add to queue";
+  // document.querySelector(`[data-id="${filmId}"]`).remove();
+  library.queueRender();
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
