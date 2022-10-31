@@ -12,20 +12,7 @@ export const library = {
 
   watchedRender() {
     this.resetLibrary();
-
     const { movieList } = this;
-    //   refs.libraryContent.innerHTML = `<ul class="gallery"></ul>`;
-    //   refs.libraryContent.classList.remove("library__empty");
-    //...........................................................................
-    //test
-    //   const LOCAL_STORAGE_DATA = {
-    //   watched: [779782, 718930, 619730],
-    //   que: [616820],
-    // };
-    // localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
-    //test
-    //...........................................................................
-
     const watchedMoviesID = JSON.parse(localStorage.getItem("storage")).watched;
     if (watchedMoviesID.length === 0) {
       this.createEmptyGalleryMarkUp();
