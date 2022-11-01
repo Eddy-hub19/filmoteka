@@ -31,11 +31,13 @@ export function addToWatch(e) {
   parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId), 1);
   refs.modalWatch.textContent = "Add to watched";
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
-  document.querySelector(`[data-id="${filmId}"]`).remove();
-
-  // if (document.querySelector("body").classList.contains("library watched")) {
-  // library.watchedRender();
-  // }
+  if (
+    document.body.classList.contains("library") &&
+    document.body.classList.contains("watched")
+  ) {
+    // document.querySelector(`[data-id="${filmId}"]`).remove();
+    library.watchedRender();
+  }
 }
 
 export function addToQue(e) {
@@ -44,19 +46,20 @@ export function addToQue(e) {
   if (!parsedStorage.que.includes(filmId)) {
     parsedStorage.que.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
+
     return;
   }
 
   parsedStorage.que.splice(parsedStorage.que.indexOf(filmId), 1);
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
   refs.modalQueue.textContent = "Add to queue";
-  document.querySelector(`[data-id="${filmId}"]`).remove();
-
-  // if (
-  //   document.querySelector("body").classList.contains("library queue modal-on")
-  // ) {
-  //   library.queueRender();
-  // }
+  if (
+    document.body.classList.contains("library") &&
+    document.body.classList.contains("queue")
+  ) {
+    // document.querySelector(`[data-id="${filmId}"]`).remove();
+    library.queueRender();
+  }
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
