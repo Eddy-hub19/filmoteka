@@ -25,13 +25,16 @@ export const library = {
     if (!refs.pageMax) {
       refs.pageMax = 1;
     }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = watchedMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = watchedMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        watchedMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        watchedMoviesID.length
       );
     }
     if (refs.moviesPerPage <= refs.moviesRemaining.length) {
@@ -71,13 +74,16 @@ export const library = {
     if (!refs.pageMax) {
       refs.pageMax = 1;
     }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = queueMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = queueMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        queueMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        queueMoviesID.length
       );
     }
     if (refs.moviesPerPage <= refs.moviesRemaining.length) {
