@@ -269,6 +269,18 @@
         font-size: 30px;
         line-height: 1.17;
       }
+
+      &:hover,
+      &:focus {
+          color: tomato;
+      }
+      body.dark__theme & {
+          color: rgb(216, 213, 213);
+        }
+  
+        body.dark__theme &:hover{
+          color: #ff6b08;
+        }
 }
 
 .text-container__main-style {
