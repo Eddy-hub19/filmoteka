@@ -34,19 +34,19 @@ export const library = {
         watchedMoviesID.length - 1
       );
     }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
+    }
 
     refs.moviesRemaining.map(async (movieId) => {
       try {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {
@@ -80,19 +80,19 @@ export const library = {
         queueMoviesID.length - 1
       );
     }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
+    }
 
     refs.moviesRemaining.map(async (movieId) => {
       try {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {
