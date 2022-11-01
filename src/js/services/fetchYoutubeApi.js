@@ -1,5 +1,6 @@
-const API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
-//API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
+//const API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
+const API_KEY = "AIzaSyAo9zyi5a8Uiy_WJRes0DvFJru5QbGdSfM";
+//const API_KEY = "AIzaSyCDTsNUCO7DDPLZVEmNL80_3dxDzTZox0k";
 const API_BASE_URL = "https://youtube.googleapis.com/youtube/v3/search?";
 
 export class fetchYoutubeApi {
@@ -14,7 +15,6 @@ export class fetchYoutubeApi {
       }
       const data = await response.json();
       const items = data.items;
-      console.log(items);
 
       return items;
     } catch (error) {
