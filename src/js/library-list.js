@@ -1,6 +1,6 @@
 import { refs } from "./refs";
 import { library } from "./library-render";
-// import { save, load } from "./services/storage";
+import { brotliDecompressSync } from "zlib";
 
 export function checkStorage() {
   if (!localStorage.getItem("storage")) {
@@ -32,8 +32,11 @@ export function addToWatch(e) {
   parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId), 1);
   refs.modalWatch.textContent = "Add to watched";
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
-  // document.querySelector(`[data-id="${filmId}"]`).remove();
-  library.watchedRender();
+  document.querySelector(`[data-id="${filmId}"]`).remove();
+
+  // if (document.querySelector("body").classList.contains("library watched")) {
+  // library.watchedRender();
+  // }
 }
 
 export function addToQue(e) {
@@ -48,8 +51,13 @@ export function addToQue(e) {
   parsedStorage.que.splice(parsedStorage.que.indexOf(filmId), 1);
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
   refs.modalQueue.textContent = "Add to queue";
-  // document.querySelector(`[data-id="${filmId}"]`).remove();
-  library.queueRender();
+  document.querySelector(`[data-id="${filmId}"]`).remove();
+
+  // if (
+  //   document.querySelector("body").classList.contains("library queue modal-on")
+  // ) {
+  //   library.queueRender();
+  // }
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
@@ -70,3 +78,7 @@ export function checkQueue() {
     ? (refs.modalQueue.textContent = "remove from queue")
     : (refs.modalQueue.textContent = "Add to queue");
 }
+
+// export function markeringHomePage() {
+//   console.log(refs.galleryCards.dataset.id);
+// }
