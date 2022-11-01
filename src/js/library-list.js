@@ -22,10 +22,10 @@ console.log(parsedStorage);
 export function addToWatch(e) {
   let filmId = refs.modalImg.dataset.img;
 
-  if (parsedStorage.watched.indexOf(filmId) === -1) {
+  if (!parsedStorage.watched.includes(filmId)) {
     parsedStorage.watched.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
-    refs.modalWatch.textContent = "You alraedy done with it";
+    refs.modalWatch.textContent = "remove from watched";
     return;
   }
 
@@ -38,8 +38,8 @@ export function addToWatch(e) {
 
 export function addToQue(e) {
   let filmId = refs.modalImg.dataset.img;
-  refs.modalQueue.textContent = "already in queue";
-  if (parsedStorage.que.indexOf(filmId) === -1) {
+  refs.modalQueue.textContent = "remove from queue";
+  if (!parsedStorage.que.includes(filmId)) {
     parsedStorage.que.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
     return;
@@ -59,7 +59,7 @@ export function checkWatchedFilm() {
   let filmId = refs.modalImg.dataset.img;
 
   return parsedStorage.watched.includes(filmId)
-    ? (refs.modalWatch.textContent = "You alraedy done with it")
+    ? (refs.modalWatch.textContent = "remove from watched")
     : (refs.modalWatch.textContent = "Add to watched");
 }
 
@@ -67,6 +67,6 @@ export function checkQueue() {
   let filmId = refs.modalImg.dataset.img;
 
   return parsedStorage.que.includes(filmId)
-    ? (refs.modalQueue.textContent = "already in queue")
+    ? (refs.modalQueue.textContent = "remove from queue")
     : (refs.modalQueue.textContent = "Add to queue");
 }
