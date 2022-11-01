@@ -32,8 +32,18 @@ export function addToWatch(e) {
   parsedStorage.watched.splice(parsedStorage.watched.indexOf(filmId), 1);
   refs.modalWatch.textContent = "Add to watched";
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
+<<<<<<< Updated upstream
   // document.querySelector(`[data-id="${filmId}"]`).remove();
   library.watchedRender();
+=======
+  if (
+    document.body.classList.contains("library") &&
+    document.body.classList.contains("watched")
+  ) {
+    // document.querySelector(`[data-id="${filmId}"]`).remove();
+    library.watchedRender();
+  }
+>>>>>>> Stashed changes
 }
 
 export function addToQue(e) {
@@ -42,14 +52,25 @@ export function addToQue(e) {
   if (parsedStorage.que.indexOf(filmId) === -1) {
     parsedStorage.que.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
+
     return;
   }
 
   parsedStorage.que.splice(parsedStorage.que.indexOf(filmId), 1);
   localStorage.setItem("storage", JSON.stringify(parsedStorage));
   refs.modalQueue.textContent = "Add to queue";
+<<<<<<< Updated upstream
   // document.querySelector(`[data-id="${filmId}"]`).remove();
   library.queueRender();
+=======
+  if (
+    document.body.classList.contains("library") &&
+    document.body.classList.contains("queue")
+  ) {
+    // document.querySelector(`[data-id="${filmId}"]`).remove();
+    library.queueRender();
+  }
+>>>>>>> Stashed changes
 }
 
 refs.modalQueue.addEventListener("click", addToQue);
