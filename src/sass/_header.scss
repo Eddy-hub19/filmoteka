@@ -71,7 +71,6 @@
   &__home:hover,
   &__library:hover {
     transform: scale(1.3);
-    transition: transform 500ms;
     animation: animate75 3000ms infinite 1000ms;
   }
 
@@ -86,6 +85,7 @@
   &__home {
     position: relative;
     margin-right: 40px;
+    transition: transform 500ms;
 
     &::after {
       content: "";
@@ -107,6 +107,7 @@
 
   &__library {
     position: relative;
+    transition: transform 500ms;
 
     &::after {
       content: "";
