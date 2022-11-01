@@ -3,10 +3,6 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-
-  @media screen and (max-height: 520px) {
-    align-items: start;
-  }
 }
 .woch__trailer {
   display: none;

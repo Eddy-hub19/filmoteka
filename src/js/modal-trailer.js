@@ -19,7 +19,7 @@ export const handleClick = (event) => {
         if (trailerName.includes("official trailer")) {
           const trailerId = item.id.videoId;
           const markup = `
-    <iframe class="iframe" width="854" height="480" src="https://www.youtube.com/embed/${trailerId}"
+    <iframe class="iframe" width="854" height="480"  src="https://www.youtube.com/embed/${trailerId}"
       title="YouTube video player" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
