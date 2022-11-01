@@ -26,10 +26,10 @@ export const moviesListRenderByTopAndSearch = {
     const currentQuery = this.options.query;
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
-    if (searchQuery === "") {
+    if (!searchQuery) {
       this.searchWarning.classList.remove("hidden");
     }
-    if (searchQuery === currentQuery || searchQuery === "") {
+    if (searchQuery === currentQuery || !searchQuery) {
       form.reset();
       return;
     }
@@ -56,7 +56,7 @@ export const moviesListRenderByTopAndSearch = {
         library.resetLibrary();
 
         const films = filmResponse.results;
-        if (films.length === 0) {
+        if (!films.length) {
           this.searchWarning.classList.remove("hidden");
           carouselRender(1, 1);
         } else {
