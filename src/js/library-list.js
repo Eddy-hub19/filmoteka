@@ -1,6 +1,5 @@
 import { refs } from "./refs";
 import { library } from "./library-render";
-import { brotliDecompressSync } from "zlib";
 
 export function checkStorage() {
   if (!localStorage.getItem("storage")) {
