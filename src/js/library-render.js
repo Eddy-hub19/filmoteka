@@ -12,22 +12,9 @@ export const library = {
 
   watchedRender() {
     this.resetLibrary();
-
     const { movieList } = this;
-    //   refs.libraryContent.innerHTML = `<ul class="gallery"></ul>`;
-    //   refs.libraryContent.classList.remove("library__empty");
-    //...........................................................................
-    //test
-    //   const LOCAL_STORAGE_DATA = {
-    //   watched: [779782, 718930, 619730],
-    //   que: [616820],
-    // };
-    // localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
-    //test
-    //...........................................................................
-
     const watchedMoviesID = JSON.parse(localStorage.getItem("storage")).watched;
-    if (watchedMoviesID.length === 0) {
+    if (!watchedMoviesID.length) {
       this.createEmptyGalleryMarkUp();
     }
     const movies = [];
@@ -35,14 +22,23 @@ export const library = {
     var iterator = 0;
     const moviesAmount = watchedMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = watchedMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = watchedMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        watchedMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        watchedMoviesID.length
       );
+    }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
     }
 
     refs.moviesRemaining.map(async (movieId) => {
@@ -50,13 +46,10 @@ export const library = {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {
@@ -72,20 +65,29 @@ export const library = {
     const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
     const movies = [];
 
-    if (queueMoviesID.length === 0) {
+    if (!queueMoviesID.length) {
       this.createEmptyQueueMarkUp();
     }
     var iterator = 0;
     const moviesAmount = queueMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = queueMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = queueMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        queueMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        queueMoviesID.length
       );
+    }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
     }
 
     refs.moviesRemaining.map(async (movieId) => {
@@ -93,13 +95,10 @@ export const library = {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {

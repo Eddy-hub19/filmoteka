@@ -9,7 +9,6 @@ export const handleClick = (event) => {
   event.preventDefault();
   showLoader();
   const title = event.currentTarget.alt.trim().toLowerCase();
-  console.log(title);
   modalEl.classList.add("is-hidden");
 
   fetchYoutube
@@ -19,9 +18,8 @@ export const handleClick = (event) => {
         const trailerName = item.snippet.title.trim().toLowerCase();
         if (trailerName.includes("official trailer")) {
           const trailerId = item.id.videoId;
-          console.log(trailerId);
           const markup = `
-    <iframe class="iframe" width="854" height="480" src="https://www.youtube.com/embed/${trailerId}"
+    <iframe class="iframe" width="854" height="480"  src="https://www.youtube.com/embed/${trailerId}"
       title="YouTube video player" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>

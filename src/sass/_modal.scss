@@ -70,6 +70,7 @@
   }
 
   &__media {
+    position: relative;
     display: inherit;
     flex-direction: column;
 
@@ -89,6 +90,29 @@
       width: 375px;
       height: 478px;
       margin-right: 16px;
+    }
+
+    &.trailer {
+      position: relative;
+
+      &::after {
+        opacity: 0.9;
+        pointer-events: none;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 43%;
+        left: 38%;
+        width: 75px;
+        height: 50px;
+        background-image: url(../img/youtube_logo.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform;
+        animation: scaler;
+        animation-duration: 2500ms;
+        animation-iteration-count: infinite;
+      }
     }
   }
 
@@ -337,7 +361,7 @@ button.active-modal-btn {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(92, 87, 87, 0.484);
+  // -webkit-box-shadow: inset 0 0 6px rgba(92, 87, 87, 0.484);
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
@@ -347,7 +371,7 @@ button.active-modal-btn {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #ff6b08b1;
-  -webkit-box-shadow: inset 0 0 6px rgba(128, 124, 124, 0.5);
+  // -webkit-box-shadow: inset 0 0 6px rgba(128, 124, 124, 0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(104, 99, 99, 0.877);

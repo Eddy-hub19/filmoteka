@@ -1,13 +1,10 @@
 import { refs } from "./refs";
 import TmDbApi from "./services/fetchApi";
-import { fetchYoutubeApi } from "./services/fetchYoutubeApi";
+
 import { hideLoader, showLoader } from "./spinner";
 import { checkQueue, checkWatchedFilm } from "./library-list";
 
-// fetchApi for movieDetail
-
 const Api = new TmDbApi();
-const fetchYoutube = new fetchYoutubeApi();
 
 async function render(id) {
   try {
@@ -26,6 +23,7 @@ function modalCloser() {
   const backgroundClose = (event) => {
     if (event.target == event.currentTarget) {
       document.body.classList.toggle("modal-on");
+      document.querySelector(".js-trailer").innerHTML = "";
       document.querySelector(".modal").classList.remove("is-hidden");
       refs.modalClose.removeEventListener("click", crossClose);
       window.removeEventListener("keydown", modalEsc);
@@ -35,6 +33,7 @@ function modalCloser() {
 
   const crossClose = (event) => {
     document.body.classList.toggle("modal-on");
+    document.querySelector(".js-trailer").innerHTML = "";
     document.querySelector(".modal").classList.remove("is-hidden");
     refs.modalBackground.removeEventListener("click", backgroundClose);
     window.removeEventListener("keydown", modalEsc);
@@ -45,6 +44,7 @@ function modalCloser() {
     if (event.key === "Escape") {
       if (document.body.classList.contains("modal-on")) {
         document.body.classList.toggle("modal-on");
+        document.querySelector(".js-trailer").innerHTML = "";
         document.querySelector(".modal").classList.remove("is-hidden");
         refs.modalBackground.removeEventListener("click", backgroundClose);
         refs.modalClose.removeEventListener("click", crossClose);
@@ -105,19 +105,13 @@ function renderMovie(response) {
     preparedGenres = genres.map((g) => g.name).join(", ");
   }
   // For poster set
-  if (poster_path === null) {
+  if (!poster_path) {
     modalPoster.src =
       "https://tn.fishki.net/26/upload/post/2018/04/20/2577020/afrikanskie-postery-k-gollivudskim-blokbasteram-6.jpg";
   } else {
     (modalPoster.src = `https://image.tmdb.org/t/p/w300${poster_path}`),
       (modalPoster.alt = `${title}`);
   }
-  //   const apiImageAddress = "https://image.tmdb.org/t/p/";
-  //   modalPoster.src = `${
-  //     poster_path
-  //       ? `${apiImageAddress}w300${poster_path}`
-  //       : "" || "https://cutt.ly/0Nma9Dw"
-  //   }`;
 
   modalPoster.setAttribute("data-img", `${id}`);
   modalTitle.textContent = `${title}`;

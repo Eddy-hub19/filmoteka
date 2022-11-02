@@ -1,6 +1,7 @@
 import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
+import { hideLoader, showLoader } from "./spinner";
 
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
@@ -25,10 +26,10 @@ export const moviesListRenderByTopAndSearch = {
     const currentQuery = this.options.query;
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
-    if (searchQuery === "") {
+    if (!searchQuery) {
       this.searchWarning.classList.remove("hidden");
     }
-    if (searchQuery === currentQuery || searchQuery === "") {
+    if (searchQuery === currentQuery || !searchQuery) {
       form.reset();
       return;
     }
@@ -45,6 +46,7 @@ export const moviesListRenderByTopAndSearch = {
 
     if (query) {
       try {
+        showLoader();
         const filmResponse = await Api.fetchSearchMovies(query, page);
         options.totalPages = filmResponse.total_pages;
 
@@ -54,18 +56,22 @@ export const moviesListRenderByTopAndSearch = {
         library.resetLibrary();
 
         const films = filmResponse.results;
-        if (films.length === 0) {
+        if (!films.length) {
           this.searchWarning.classList.remove("hidden");
-          library.createEmptyGalleryMarkUp();
+          carouselRender(1, 1);
         } else {
           this.searchWarning.classList.add("hidden");
         }
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
     } else {
       try {
+        showLoader();
         const filmResponse = await Api.fetchTrendingMovies(page);
         options.totalPages = filmResponse.total_pages;
 
@@ -76,6 +82,9 @@ export const moviesListRenderByTopAndSearch = {
 
         const films = filmResponse.results;
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }

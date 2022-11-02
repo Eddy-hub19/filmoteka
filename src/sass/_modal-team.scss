@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    background: rgb(0, 0, 0, 0.25);
+    background-color: rgba($color: #000000, $alpha: 0.7);
 
     padding-top: 20px;
     padding-bottom: 20px;
@@ -18,6 +18,7 @@
         visibility: hidden;
     }
 }
+
 .backdrop-team.is-hidden .modal-team {
     transform: translate(-50%, -50%) scale(0.4);
 }
@@ -30,8 +31,8 @@
     transition: transform 500ms;
     border-radius: 5px;
     background: $white-color;
-
-    overflow-y: auto;
+    z-index: 75;
+    overflow-y: scroll;
 
     padding: 30px 30px;
     @media screen and (max-width: 1279px) {
@@ -110,10 +111,11 @@
     }
     @media screen and (min-width: 768px) {
         gap: 16px;
+        justify-content: center;
     }
 
     @media screen and (min-width: 1280px) {
-        column-gap: 10px;
+        justify-content: space-between;
     }
 }
 
@@ -207,14 +209,19 @@
     // height: 478px;
 }
 
-.team__name,
-.team__role {
+.team__name{
     text-align: center;
     line-height: 1.35;
-
+    
     body.dark__theme & {
         color: $white-color;
     }
+}
+
+.team__role {
+    text-align: center;
+    line-height: 1.35;
+    color: tomato;
 }
 
 .team__name {
@@ -245,22 +252,94 @@
     }
 }
 
-.text-gh {
-    position: relative;
+.modal-team__text-container{
+    text-align: center;
 }
 
-.text-position {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    display: flex;
-    justify-content: space-between;
+.modal-team__header-container{
+    text-align: center;
+    padding-bottom: 20px;
+    
+    
+    @media screen and (max-width: 767px) {
+        font-size: 0;
+      }
+  
+      @media screen and (min-width: 768px) {
+        font-size: 30px;
+        line-height: 1.17;
+      }
 
-    transition: color 250ms;
+      &:hover,
+      &:focus {
+          color: tomato;
+      }
+      body.dark__theme & {
+          color: rgb(216, 213, 213);
+        }
+  
+        body.dark__theme &:hover{
+          color: #ff6b08;
+        }
+}
+
+.text-container__main-style {
+    @media screen and (max-width: 767px) {
+        font-size: 12px;
+        line-height: 1.33;
+      }
+  
+      @media screen and (min-width: 768px) and (max-width: 1279px) {
+        font-size: 20px;
+        line-height: 1.33;
+      }
+  
+      @media screen and (min-width: 1280px) {
+        height: 634px;
+        font-size: 30px;
+        line-height: 1.2;
+      }
 
     &:hover,
     &:focus {
-        color: #ff6b08;
+        color: tomato;
     }
+    body.dark__theme & {
+        color: rgb(216, 213, 213);
+      }
+
+      body.dark__theme &:hover{
+        color: tomato;
+      }
+}
+
+
+.text-container__style {
+    @media screen and (max-width: 767px) {
+        font-size: 12px;
+        line-height: 1.33;
+      }
+  
+      @media screen and (min-width: 768px) and (max-width: 1279px) {
+        font-size: 12px;
+        line-height: 1.33;
+      }
+  
+      @media screen and (min-width: 1280px) {
+        height: 634px;
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+    &:hover,
+    &:focus {
+        color: tomato;
+    }
+    body.dark__theme & {
+        color: rgb(216, 213, 213);
+      }
+
+      body.dark__theme &:hover{
+        color: tomato;
+      }
 }
