@@ -10,6 +10,9 @@ import {
   carouselRender,
 } from "./js/carousel";
 
+import { filterByGenre } from './js/filter'
+filterByGenre();
+
 import { upwardEl, scrollTop } from "./js/upward";
 
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
