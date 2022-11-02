@@ -18,9 +18,17 @@
 }
 
 .upward.active {
-  bottom: 40px;
+  bottom: 30px;
   visibility: visible;
   opacity: 0.7;
+
+  @media screen and (min-width: 1024px) {
+    bottom: 80px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    bottom: 80px;
+  }
 }
 
 @-webkit-keyframes hvr-bob {

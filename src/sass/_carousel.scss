@@ -39,6 +39,7 @@
       background-color: $main--accent;
       border: none;
 
+
       & img {
         filter: invert(1);
       }
@@ -102,6 +103,8 @@
 
     &:hover {
       transform: scale(1.3);
+      transition: transform 500ms;
+      animation: animate75 3000ms infinite 1000ms;
     }
 
     body.dark__theme & {
