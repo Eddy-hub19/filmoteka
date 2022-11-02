@@ -3,30 +3,8 @@ import TmDbApi from "./services/fetchApi";
 
 import { hideLoader, showLoader } from "./spinner";
 import { checkQueue, checkWatchedFilm } from "./library-list";
-// import { moviesListRenderByTopAndSearch } from "./moviesListRenderByTopAndSearch"
-
-// fetchApi for movieDetail
 
 const Api = new TmDbApi();
-
-const trailerEl = document.querySelector(".js-trailer");
-
-const overlayEl = document.querySelector(".overlay");
-const onEscClick = (event) => {
-  if (event.code === "Escape") {
-    trailerEl.innerHTML = "";
-    document.body.removeEventListener("keydown", onEscClick);
-  }
-};
-const onOverlayClick = (event) => {
-  if (event.target === event.currentTarget) {
-    trailerEl.innerHTML = "";
-    overlayEl.removeEventListener("click", onOverlayClick);
-  }
-};
-
-document.body.addEventListener("keydown", onEscClick);
-overlayEl.addEventListener("click", onOverlayClick);
 
 async function render(id) {
   try {
