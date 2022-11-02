@@ -21,6 +21,9 @@ import {
   carouselRender,
 } from "./js/carousel";
 
+import addSliderCinema from "./js/slider" // для слайдера
+addSliderCinema();
+
 upwardEl();
 scrollTop();
 
