@@ -7,7 +7,6 @@ export function checkStorage() {
       watched: [],
       que: [],
     };
-
     localStorage.setItem("storage", JSON.stringify(LOCAL_STORAGE_DATA));
   }
 }
@@ -41,7 +40,6 @@ export function addToWatch(e) {
     document.body.classList.contains("library") &&
     document.body.classList.contains("watched")
   ) {
-    // document.querySelector(`[data-id="${filmId}"]`).remove();
     library.watchedRender();
   }
 }
@@ -57,7 +55,6 @@ export function addToQue(e) {
       document.body.classList.contains("library") &&
       document.body.classList.contains("queue")
     ) {
-      // document.querySelector(`[data-id="${filmId}"]`).remove();
       library.queueRender();
     }
 
@@ -71,7 +68,6 @@ export function addToQue(e) {
     document.body.classList.contains("library") &&
     document.body.classList.contains("queue")
   ) {
-    // document.querySelector(`[data-id="${filmId}"]`).remove();
     library.queueRender();
   }
 }
@@ -97,10 +93,4 @@ export function checkQueue() {
 
 export function markeringHomePage() {
   const liba = [...document.querySelectorAll(".gallery__card")];
-  // console.log(liba);
-  // liba.map((item) => {
-  //   console.log(item.dataset.id);
-  // });
 }
-
-// markeringHomePage();

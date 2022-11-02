@@ -4,6 +4,7 @@ const fetchYoutube = new fetchYoutubeApi();
 const modalEl = document.querySelector(".modal");
 const modalPoster = document.querySelector(".modal__poster");
 const modalTrailerEl = document.querySelector(".js-trailer");
+
 //По кліку на постер  ховаєм модалку  завантажуємо і показуємо трейлер
 export const handleClick = (event) => {
   event.preventDefault();
