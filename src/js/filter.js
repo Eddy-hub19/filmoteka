@@ -97,7 +97,7 @@ export function filterByGenre() {
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 const API_KEY = "bef35a6880b17319422124db5bc1d407";
 
-params = {
+const params = {
   api_key: API_KEY,
   include_adult: false,
   page: 1,
