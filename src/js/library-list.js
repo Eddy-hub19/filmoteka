@@ -16,7 +16,6 @@ checkStorage();
 
 const savedStorage = localStorage.getItem("storage");
 let parsedStorage = JSON.parse(savedStorage);
-console.log(parsedStorage);
 
 export function addToWatch(e) {
   let filmId = refs.modalImg.dataset.img;
@@ -25,6 +24,13 @@ export function addToWatch(e) {
     parsedStorage.watched.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
     refs.modalWatch.textContent = "remove from watched";
+
+    if (
+      document.body.classList.contains("library") &&
+      document.body.classList.contains("watched")
+    ) {
+      library.watchedRender();
+    }
     return;
   }
 
@@ -46,6 +52,14 @@ export function addToQue(e) {
   if (!parsedStorage.que.includes(filmId)) {
     parsedStorage.que.push(filmId);
     localStorage.setItem("storage", JSON.stringify(parsedStorage));
+
+    if (
+      document.body.classList.contains("library") &&
+      document.body.classList.contains("queue")
+    ) {
+      // document.querySelector(`[data-id="${filmId}"]`).remove();
+      library.queueRender();
+    }
 
     return;
   }
