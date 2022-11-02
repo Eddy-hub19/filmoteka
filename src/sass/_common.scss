@@ -6,6 +6,7 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  transition: all 0.8s ease-out;
 
   &.dark__theme {
     background-color: #303030;
@@ -37,10 +38,9 @@ body {
   }
 }
 
-body.modal-open{
+body.modal-open {
   overflow: hidden;
 }
-
 
 a {
   text-decoration: none;

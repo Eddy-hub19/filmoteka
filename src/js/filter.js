@@ -84,7 +84,7 @@ export function filterByGenre() {
   homeBtn.addEventListener("click", reset);
 
   function reset() {
-    selectedGenre = [];
+    selectedGenre.length = 0;
     setGenre();
     clear.classList.add("hidden");
     filterListEl.classList.remove("active");
