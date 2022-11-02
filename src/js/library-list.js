@@ -81,6 +81,12 @@ export function checkQueue() {
     : (refs.modalQueue.textContent = "Add to queue");
 }
 
-// export function markeringHomePage() {
-//   console.log(refs.galleryCards.dataset.id);
-// }
+export function markeringHomePage() {
+  const liba = [...document.querySelectorAll(".gallery__card")];
+  // console.log(liba);
+  // liba.map((item) => {
+  //   console.log(item.dataset.id);
+  // });
+}
+
+// markeringHomePage();

@@ -3,6 +3,8 @@ import genres from "./services/genres";
 import { modalListener } from "./modal";
 import { hideLoader, showLoader } from "./spinner";
 
+import { markeringHomePage } from "./library-list";
+
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
 import { library } from "./library-render";
@@ -136,6 +138,7 @@ export const moviesListRenderByTopAndSearch = {
     movieList.innerHTML = "";
     movieList.insertAdjacentHTML("beforeend", moviesMarkUp);
     modalListener();
+    markeringHomePage();
   },
   calculatingGenres(genre_ids) {
     const sortGenres = genres
