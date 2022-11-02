@@ -230,12 +230,6 @@ export const filterMovie = {
 };
 
 filterMovie.paginationControlBtns.forEach((el) => {
-  // el.removeEventListener(
-  //   "click",
-  //   moviesListRenderByTopAndSearch.changePage.bind(
-  //     moviesListRenderByTopAndSearch
-  //   )
-  // );
   el.addEventListener("click", filterMovie.changePage.bind(filterMovie));
 });
 

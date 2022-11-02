@@ -15,8 +15,6 @@ function onTeamClick(e) {
   e.preventDefault();
   backdropTeam.classList.remove('is-hidden');
   body.classList.add('modal-open');
-  // modalTeamMarkup();
-  // heartIcon.classList.remove('animate__heartBeat');
 
   if (e.target !== e.currentTarget) {
     window.addEventListener('keydown', onEscKeyPress);
@@ -42,6 +40,5 @@ function onCloseClickBackdrop(e) {
 function onEscKeyPress(e) {
   if (e.code === 'Escape') {
     onCloseTeamClick();
-    console.log('yup');
   }
 }

@@ -62,10 +62,15 @@
   margin: 5px;
   display: inline-block;
   cursor: pointer;
+
+  body.dark__theme & {
+  color: #000;
+  }
 }
 
 .tag:hover {
-  outline: 1px solid rgb(255, 216, 189);
+  // outline: 1px solid rgb(255, 216, 189);
+  box-shadow: 0px 0px 10px 5px rgb(255, 107, 8);
 }
 
 .tag.highlight {
