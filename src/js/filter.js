@@ -71,7 +71,7 @@ export function filterByGenre() {
     clear.classList.add("hidden");
 
     clear.addEventListener("click", () => {
-      selectedGenre = [];
+      selectedGenre.length = 0;
       setGenre();
       moviesListRenderByTopAndSearch.render();
       clear.classList.add("hidden");
