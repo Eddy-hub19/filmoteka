@@ -10,7 +10,7 @@
       </div>
     </nav>
     <div class="search">
-      <form class="search__hourglass js-search__form">
+      <form class="search__hourglass js-search__form" autocomplete="off">
         <input
           type="text"
           placeholder="Movie search"
@@ -22,10 +22,16 @@
       <div class="search__warning hidden">
         Search result not successful. Enter the correct movie name
       </div>
+      <button type="button" class="searchBtn">Search by genre</button>
     </div>
     <div class="switcher">
       <button type="button" class="button button__watched">Watched</button>
       <button type="button" class="button button__queue">queue</button>
     </div>
+    
   </div>
 </header>
+
+<div class="filter">
+  <div class="tags"></div>
+</div>

@@ -1,11 +1,13 @@
 import TmDbApi from "./services/fetchApi";
 import genres from "./services/genres";
 import { modalListener } from "./modal";
-import Handlebars from "handlebars";
+import { hideLoader, showLoader } from "./spinner";
+
+import { markeringHomePage } from "./library-list";
+
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
-
-const template = Handlebars.compile(``);
+import { library } from "./library-render";
 
 const Api = new TmDbApi();
 export const defaultPoster =
@@ -19,7 +21,6 @@ export const moviesListRenderByTopAndSearch = {
     query: "",
     page: 1,
     totalPages: null,
-    // per_page: 15,
   },
   onSearchForm(event) {
     event.preventDefault();
@@ -27,8 +28,10 @@ export const moviesListRenderByTopAndSearch = {
     const currentQuery = this.options.query;
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
-    if (searchQuery === currentQuery || searchQuery === "") {
+    if (!searchQuery) {
       this.searchWarning.classList.remove("hidden");
+    }
+    if (searchQuery === currentQuery || !searchQuery) {
       form.reset();
       return;
     }
@@ -45,34 +48,45 @@ export const moviesListRenderByTopAndSearch = {
 
     if (query) {
       try {
+        showLoader();
         const filmResponse = await Api.fetchSearchMovies(query, page);
         options.totalPages = filmResponse.total_pages;
 
         refs.pageMax = filmResponse.total_pages;
         refs.pageCurrent = options.page;
         carouselRender(refs.pageCurrent, refs.pageMax);
+        library.resetLibrary();
 
         const films = filmResponse.results;
-        if (films.length === 0) {
+        if (!films.length) {
           this.searchWarning.classList.remove("hidden");
+          carouselRender(1, 1);
         } else {
           this.searchWarning.classList.add("hidden");
         }
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
     } else {
       try {
+        showLoader();
         const filmResponse = await Api.fetchTrendingMovies(page);
         options.totalPages = filmResponse.total_pages;
 
         refs.pageMax = filmResponse.total_pages;
         refs.pageCurrent = options.page;
         carouselRender(refs.pageCurrent, refs.pageMax);
+        library.resetLibrary();
 
         const films = filmResponse.results;
         this.createMarkUp(this.preparingForMarkUp(films));
+        setTimeout(() => {
+          hideLoader();
+        }, 300);
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
@@ -124,6 +138,7 @@ export const moviesListRenderByTopAndSearch = {
     movieList.innerHTML = "";
     movieList.insertAdjacentHTML("beforeend", moviesMarkUp);
     modalListener();
+    markeringHomePage();
   },
   calculatingGenres(genre_ids) {
     const sortGenres = genres
@@ -149,3 +164,12 @@ moviesListRenderByTopAndSearch.searchForm.addEventListener(
     moviesListRenderByTopAndSearch
   )
 );
+refs.logo.addEventListener("click", () => {
+  (moviesListRenderByTopAndSearch.options.query = ""),
+    (moviesListRenderByTopAndSearch.options.page = 1),
+    moviesListRenderByTopAndSearch.render(),
+    carouselRender(
+      moviesListRenderByTopAndSearch.options.page,
+      moviesListRenderByTopAndSearch.options.totalPages
+    );
+});

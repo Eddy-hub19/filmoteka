@@ -1,5 +1,6 @@
 import { library } from "./js/library-render";
-
+import { spinner } from "./js/spinner";
+import { handleClick } from "./js/modal-trailer";
 import { moviesListRenderByTopAndSearch } from "./js/moviesListRenderByTopAndSearch";
 import { refs } from "./js/refs";
 import * as modalTeam from "./js/modal-team";
@@ -9,6 +10,9 @@ import {
   carouselResizing,
   carouselRender,
 } from "./js/carousel";
+
+import { filterByGenre } from './js/filter'
+filterByGenre();
 
 import { upwardEl, scrollTop } from "./js/upward";
 
@@ -31,16 +35,6 @@ import { addToWatch } from "./js/library-list";
 
 moviesListRenderByTopAndSearch.render();
 
-refs.logo.addEventListener("click", (event) => {
-  event.preventDefault();
-  document.body.className = "home watched";
-
-  refs.searchBox.value = "";
-  moviesListRenderByTopAndSearch.options.query = "";
-  moviesListRenderByTopAndSearch.options.page = 1;
-  moviesListRenderByTopAndSearch.render();
-});
-
 refs.homeButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("library", "home");
@@ -53,8 +47,13 @@ refs.libraryButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.body.classList.replace("home", "library");
 
-  refs.pageCurrent = 1;
-  library.watchedRender();
+  if (document.body.classList.contains("watched")) {
+    refs.pageCurrent = 1;
+    library.watchedRender();
+  } else {
+    refs.pageCurrent = 1;
+    library.queueRender();
+  }
 });
 
 refs.watchedButton.addEventListener("click", () => {

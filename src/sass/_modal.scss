@@ -11,11 +11,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba($color: #000000, $alpha: 0.25);
+  background-color: rgba($color: #000000, $alpha: 0.7);
 
   @media screen and (max-width: 767px) {
     padding: 20px 0 30px;
-    // padding-left: 16px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -51,9 +50,6 @@
     padding: 40px 12px;
   }
 
-
-
-
   &__close {
     position: absolute;
     top: 8px;
@@ -64,8 +60,6 @@
     border: 0;
     background: $main--text;
     mask-image: url(../img/close.svg);
-
-
   }
 
   &__content {
@@ -75,6 +69,7 @@
   }
 
   &__media {
+    position: relative;
     display: inherit;
     flex-direction: column;
 
@@ -94,6 +89,29 @@
       width: 375px;
       height: 478px;
       margin-right: 16px;
+    }
+
+    &.trailer {
+      position: relative;
+
+      &::after {
+        opacity: 0.9;
+        pointer-events: none;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        width: 75px;
+        height: 50px;
+        background-image: url(../img/youtube_logo.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform;
+        animation: scaler;
+        animation-duration: 2500ms;
+        animation-iteration-count: infinite;
+      }
     }
   }
 
@@ -210,10 +228,13 @@
     display: inherit;
     flex-direction: column;
     gap: 8px;
+    overflow-y: scroll;
   }
 
   &__text {
     line-height: 1.67;
+    max-height: 200px;
+    padding: 0 4px;
   }
 
   &__buttons {
@@ -262,15 +283,13 @@
   &__original,
   &__genre,
   &__about,
-  &__text
-  {
+  &__text {
     body.dark__theme & {
       color: rgb(216, 213, 213);
     }
   }
 
-  &__close
-  {
+  &__close {
     body.dark__theme & {
       background-color: rgb(216, 213, 213);
     }
@@ -280,19 +299,16 @@
     }
   }
 
-
   &__watch,
-  &__queue{
+  &__queue {
     body.dark__theme & {
       color: rgb(216, 213, 213);
       border-color: rgb(216, 213, 213);
-      
     }
   }
-
 }
 
-.animate__zoomIn{
+.animate__zoomIn {
   animation-duration: 2000ms;
 }
 
@@ -303,6 +319,7 @@
   & .overlay {
     pointer-events: all;
     opacity: 1;
+    transition: opacity 700ms;
 
     &.loading {
       & .modal__spinner {
@@ -319,7 +336,7 @@
 button.active-modal-btn {
   background-color: gray;
   border-color: gray;
-  color:$white-color;
+  color: $white-color;
 }
 
 .active-modal-btn:hover,
@@ -329,8 +346,32 @@ button.active-modal-btn {
 }
 
 .active-modal-btn:hover,
-.active-modal-btn:focus
-{
+.active-modal-btn:focus {
   background-color: $orange-color;
   border-color: $orange-color;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+
+  background: rgba(246, 246, 246, 0.917);
+  border-radius: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ff6b08b1;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(104, 99, 99, 0.877);
 }

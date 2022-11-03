@@ -26,30 +26,58 @@ export function carouselListener() {
         break;
 
       case event.target.classList.contains("more__right"):
-        if (refs.pageCurrent <= refs.pageMax - 5) {
-          refs.pageCurrent += 5;
-          carouselRender(refs.pageCurrent, refs.pageMax);
+        if (refs.pageCurrent - 2 >= 97) {
+          if (refs.pageCurrent <= refs.pageMax - 3) {
+            refs.pageCurrent += 3;
+            carouselRender(refs.pageCurrent, refs.pageMax);
 
-          detectWTFisGoingOn();
+            detectWTFisGoingOn();
+          } else {
+            refs.pageCurrent = refs.pageMax;
+            carouselRender(refs.pageCurrent, refs.pageMax);
+
+            detectWTFisGoingOn();
+          }
         } else {
-          refs.pageCurrent = refs.pageMax;
-          carouselRender(refs.pageCurrent, refs.pageMax);
+          if (refs.pageCurrent <= refs.pageMax - 5) {
+            refs.pageCurrent += 5;
+            carouselRender(refs.pageCurrent, refs.pageMax);
 
-          detectWTFisGoingOn();
+            detectWTFisGoingOn();
+          } else {
+            refs.pageCurrent = refs.pageMax;
+            carouselRender(refs.pageCurrent, refs.pageMax);
+
+            detectWTFisGoingOn();
+          }
         }
         break;
 
       case event.target.classList.contains("more__left"):
-        if (refs.pageCurrent > 5) {
-          refs.pageCurrent -= 5;
-          carouselRender(refs.pageCurrent, refs.pageMax);
+        if (refs.pageCurrent - 2 >= 97) {
+          if (refs.pageCurrent > 3) {
+            refs.pageCurrent -= 3;
+            carouselRender(refs.pageCurrent, refs.pageMax);
 
-          detectWTFisGoingOn();
+            detectWTFisGoingOn();
+          } else {
+            refs.pageCurrent = 1;
+            carouselRender(refs.pageCurrent, refs.pageMax);
+
+            detectWTFisGoingOn();
+          }
         } else {
-          refs.pageCurrent = 1;
-          carouselRender(refs.pageCurrent, refs.pageMax);
+          if (refs.pageCurrent > 5) {
+            refs.pageCurrent -= 5;
+            carouselRender(refs.pageCurrent, refs.pageMax);
 
-          detectWTFisGoingOn();
+            detectWTFisGoingOn();
+          } else {
+            refs.pageCurrent = 1;
+            carouselRender(refs.pageCurrent, refs.pageMax);
+
+            detectWTFisGoingOn();
+          }
         }
         break;
 
@@ -93,6 +121,14 @@ export function carouselResizing() {
 }
 
 export function carouselRender(page, totalPages) {
+  refs.carouselLeft.classList.remove("disabled");
+  refs.carouselRight.classList.remove("disabled");
+  if (page === 1) {
+    refs.carouselLeft.classList.add("disabled");
+  }
+  if (page === totalPages) {
+    refs.carouselRight.classList.add("disabled");
+  }
   if (page <= totalPages && page >= 1) {
     const carouselContent = document.querySelector(".carousel__content");
     const numberArray = [];
@@ -151,6 +187,9 @@ export function carouselRender(page, totalPages) {
           let toPad = 4 - (totalPages - page);
           cutOffLeft = numberArray.indexOf(page - (2 + toPad));
           numberArray.splice(0, cutOffLeft);
+          if (numberArray[0] > 97) {
+            numberArray.splice(0, 1);
+          }
           carouselContent.insertAdjacentHTML(
             "beforeend",
             `<div class="carousel__number corner">1</div>
@@ -164,6 +203,10 @@ export function carouselRender(page, totalPages) {
           numberArray.splice(0, cutOffLeft);
           cutOffRight = numberArray.indexOf(page + 3);
           numberArray.splice(cutOffRight, numberArray.length - 1);
+          if (numberArray[0] > 97) {
+            numberArray.splice(0, 1);
+            numberArray.length = numberArray.length - 1;
+          }
           carouselContent.insertAdjacentHTML(
             "beforeend",
             `<div class="carousel__number corner">1</div>

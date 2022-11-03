@@ -14,13 +14,20 @@
   opacity: 0;
   transition: 0.5s;
   z-index: 100;
- 
 }
 
 .upward.active {
-  bottom: 40px;
+  bottom: 30px;
   visibility: visible;
   opacity: 0.7;
+
+  @media screen and (min-width: 1024px) {
+    bottom: 80px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    bottom: 80px;
+  }
 }
 
 @-webkit-keyframes hvr-bob {
@@ -81,6 +88,7 @@
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .hvr-bob:hover,
 .hvr-bob:focus {
   -webkit-animation-name: hvr-bob-float, hvr-bob;
@@ -97,7 +105,6 @@
   animation-fill-mode: forwards;
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
-  // background-color: #ffffff;
   opacity: 1;
   border: 3px solid $main--accent;
 }

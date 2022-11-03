@@ -5,26 +5,40 @@ import { carouselRender } from "./carousel";
 const Api = new TmDbApi();
 
 export const library = {
-  movieList: document.querySelector(".gallery"),
+  movieList: refs.gallery,
   options: {
     page: 1,
   },
 
   watchedRender() {
+    this.resetLibrary();
+    const { movieList } = this;
     const watchedMoviesID = JSON.parse(localStorage.getItem("storage")).watched;
+    if (!watchedMoviesID.length) {
+      this.createEmptyGalleryMarkUp();
+    }
     const movies = [];
 
     var iterator = 0;
     const moviesAmount = watchedMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = watchedMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = watchedMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        watchedMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        watchedMoviesID.length
       );
+    }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
     }
 
     refs.moviesRemaining.map(async (movieId) => {
@@ -32,13 +46,10 @@ export const library = {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {
@@ -48,21 +59,35 @@ export const library = {
   },
 
   queueRender() {
-    const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
+    this.resetLibrary();
+    const { movieList } = this;
 
+    const queueMoviesID = JSON.parse(localStorage.getItem("storage")).que;
     const movies = [];
 
+    if (!queueMoviesID.length) {
+      this.createEmptyQueueMarkUp();
+    }
     var iterator = 0;
     const moviesAmount = queueMoviesID.length;
     refs.pageMax = Math.ceil(moviesAmount / refs.moviesPerPage);
+    if (!refs.pageMax) {
+      refs.pageMax = 1;
+    }
+    if (refs.pageCurrent > refs.pageMax) {
+      refs.pageCurrent = refs.pageMax;
+    }
     carouselRender(refs.pageCurrent, refs.pageMax);
 
     refs.moviesRemaining = queueMoviesID;
     if (refs.pageCurrent > 1) {
       refs.moviesRemaining = queueMoviesID.slice(
-        (refs.pageCurrent - 1) * refs.moviesPerPage - 1,
-        queueMoviesID.length - 1
+        (refs.pageCurrent - 1) * refs.moviesPerPage,
+        queueMoviesID.length
       );
+    }
+    if (refs.moviesPerPage <= refs.moviesRemaining.length) {
+      refs.moviesRemaining.length = refs.moviesPerPage;
     }
 
     refs.moviesRemaining.map(async (movieId) => {
@@ -70,13 +95,10 @@ export const library = {
         const movie = await Api.fetchMovieDetail(movieId);
         iterator += 1;
         movies.push(movie);
-        if (iterator === refs.moviesPerPage) {
-          this.createMarkUp(this.preparingForMarkUp(movies));
-        }
-        if (
-          iterator < refs.moviesPerPage &&
-          movies.length === refs.moviesRemaining.length
-        ) {
+        if (movies.length === refs.moviesRemaining.length) {
+          movies.sort((e1, e2) => {
+            return e1.title.localeCompare(e2.title);
+          });
           this.createMarkUp(this.preparingForMarkUp(movies));
         }
       } catch (error) {
@@ -99,7 +121,6 @@ export const library = {
   },
 
   createMarkUp(preparedMovies) {
-    const { movieList } = this;
     const moviesMarkUp = preparedMovies
       .map(({ id, title, poster_path, vote_average, release_date, genres }) => {
         return `<li class="gallery__card" data-id=${id}>
@@ -125,9 +146,22 @@ export const library = {
         </li>`;
       })
       .join("");
-    movieList.innerHTML = "";
-    movieList.insertAdjacentHTML("beforeend", moviesMarkUp);
+
+    refs.gallery.innerHTML = "";
+    refs.gallery.insertAdjacentHTML("beforeend", moviesMarkUp);
     modalListener();
+  },
+
+  createEmptyGalleryMarkUp() {
+    refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your gallery is empty. <br>Choose your first movie!</p>`;
+    refs.libraryContent.classList.add("library__empty");
+    carouselRender(1, 1);
+  },
+
+  createEmptyQueueMarkUp() {
+    refs.gallery.innerHTML = `<p class="library-message animate__bounceInDown">Your queue is empty. <br>Choose your first movie!</p>`;
+    refs.libraryContent.classList.add("library__empty");
+    carouselRender(1, 1);
   },
 
   calculatingGenres(genre_ids) {
@@ -138,5 +172,9 @@ export const library = {
     } else {
       return sortGenres;
     }
+  },
+
+  resetLibrary() {
+    refs.libraryContent.classList.remove("library__empty");
   },
 };
