@@ -16,7 +16,7 @@
   justify-content: center;
   margin: 0 auto;
   background-image: none;
-  
+
   @media screen and (max-width: 767px) {
     grid-template-columns: 280px;
     grid-auto-rows: 443px;
@@ -105,7 +105,6 @@
   }
 
   &__rating {
-    // display: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,6 +116,10 @@
     background-color: $main--accent;
     font-size: 12px;
     line-height: 1.17;
+    @media screen and (max-width: 1279px) {
+      height: 14px;
+      width: 36px;
+    }
   }
 }
 
@@ -145,16 +148,10 @@
 
 // Modifiers
 
-// .home {
-//   & .gallery__rating {
-//     display: none;
-//   }
-// }
-
 .icon__button {
   position: absolute;
   background-color: #ff6b01;
-  top: 170px;
+  top: 165px;
   right: 10px;
 
   z-index: 4;
@@ -207,4 +204,3 @@
         0 0 10px rgba(199, 196, 196, 0.22);
     }
 }
-// Comment to respect

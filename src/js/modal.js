@@ -18,6 +18,7 @@ async function render(id) {
   }
   checkQueue();
 }
+
 // For adding listeners for closing modals:
 function modalCloser() {
   const backgroundClose = (event) => {
@@ -57,6 +58,7 @@ function modalCloser() {
   refs.modalClose.addEventListener("click", crossClose);
   window.addEventListener("keydown", modalEsc);
 }
+
 // Adding listeners to modal cards::
 export function modalListener() {
   const modalOpener = (event) => {
@@ -99,11 +101,13 @@ function renderMovie(response) {
     original_title,
     overview,
   } = response;
+
   // Feature for genre map
   let preparedGenres = null;
   if (genres) {
     preparedGenres = genres.map((g) => g.name).join(", ");
   }
+  
   // For poster set
   if (!poster_path) {
     modalPoster.src =
