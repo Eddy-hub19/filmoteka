@@ -20,12 +20,7 @@ async function addSliderCinema() {
             return `<div class="slider-item swiper-slide">
                 <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-source="https://image.tmdb.org/t/p/w500${poster_path}" data-page="homepage" alt="${original_title}" quiet="" on="" the="" western="" front=""/>
             
-                <div>${original_title}</div>
-                  <div>
-                      <div>Genre</div>
-              
-                      <div>${release_date}</div>
-                  </div>
+               
         </div>`
         }).join("") 
         sliderEl.innerHTML = markup;
