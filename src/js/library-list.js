@@ -45,6 +45,7 @@ export function addToWatch(e) {
 }
 
 export function addToQue(e) {
+  markeringHomePage();
   let filmId = refs.modalImg.dataset.img;
   refs.modalQueue.textContent = "remove from queue";
   if (!parsedStorage.que.includes(filmId)) {
@@ -93,4 +94,13 @@ export function checkQueue() {
 
 export function markeringHomePage() {
   const liba = [...document.querySelectorAll(".gallery__card")];
+  liba.map((item) => {
+    if (parsedStorage.watched.includes(item.dataset.id)) {
+      item.lastElementChild.classList.add("label-w");
+    }
+    if (parsedStorage.que.includes(item.dataset.id)) {
+      item.lastElementChild.firstElementChild.classList.add("label-q");
+    }
+    return;
+  });
 }

@@ -1,27 +1,24 @@
-import TmDbApi from '../js/services/fetchApi'
+import TmDbApi from "../js/services/fetchApi";
 
-import Swiper from '../../node_modules/swiper/swiper-bundle';
-import '../../node_modules/swiper/swiper-bundle.css';
+import Swiper from "../../node_modules/swiper/swiper-bundle";
+import "../../node_modules/swiper/swiper-bundle.css";
 
 const popularCinema = new TmDbApi();
 
 async function addSliderCinema() {
-    const sliderEl = document.querySelector('.slider');
-    console.log(sliderEl);
-    try {
-        const dataCinemas = await popularCinema.fetchTrendingMovies()
-        console.log(dataCinemas);
-        const cinemas = dataCinemas.results;
-        console.log(cinemas);
+  const sliderEl = document.querySelector(".slider");
+  try {
+    const dataCinemas = await popularCinema.fetchTrendingMovies();
+    const cinemas = dataCinemas.results;
 
-        const markup = cinemas.map(cinema => {
-            const {id, original_title, release_date, genre_ids, poster_path} = cinema;
-            console.log(poster_path);
-            return `<div class="slider-item swiper-slide">
+    const markup = cinemas
+      .map((cinema) => {
+        const { id, original_title, release_date, genre_ids, poster_path } =
+          cinema;
+        return `<div class="slider-item swiper-slide">
                 <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-source="https://image.tmdb.org/t/p/w500${poster_path}" data-page="homepage" alt="${original_title}" quiet="" on="" the="" western="" front=""/>
             
-               
-        </div>`
+ </div>`
         }).join("") 
         sliderEl.innerHTML = markup;
         const swiper = new Swiper(".mySwiper", {
@@ -57,8 +54,8 @@ async function addSliderCinema() {
             },
           });
     } catch (error) {
+
     console.log(error.message);
-    }
+  }
 }
 export default addSliderCinema;
-
