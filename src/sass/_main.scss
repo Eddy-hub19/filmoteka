@@ -69,7 +69,7 @@
     object-fit: cover;
     border-radius: 5px;
     box-shadow: 15px 0 28px rgba(0, 0, 0, 0.25), 5px 0 10px rgba(0, 0, 0, 0.22);
-
+    transition: all 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     @media screen and (max-width: 767px) {
       margin-bottom: 10px;
     }

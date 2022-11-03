@@ -162,6 +162,10 @@ export const filterMovie = {
       const films = filmResponse.results;
       this.createMarkUp(this.preparingForMarkUp(films));
       carouselRender(this.options.page, this.options.totalPages);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     } catch (error) {
       console.log(error, `Попробуйте перезагрузить страницу`);
     }

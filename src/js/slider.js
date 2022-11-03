@@ -18,44 +18,43 @@ async function addSliderCinema() {
         return `<div class="slider-item swiper-slide">
                 <img src="https://image.tmdb.org/t/p/w500${poster_path}" data-source="https://image.tmdb.org/t/p/w500${poster_path}" data-page="homepage" alt="${original_title}" quiet="" on="" the="" western="" front=""/>
             
-               
-        </div>`;
-      })
-      .join("");
-    sliderEl.innerHTML = markup;
-    const swiper = new Swiper(".mySwiper", {
-      slidesPerView: 7,
-      spaceBetween: 10,
-      speed: 250,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      loop: true,
-      breakpoints: {
-        "@0.00": {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        "@0.75": {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        "@1.00": {
-          slidesPerView: 7,
-          spaceBetween: 10,
-        },
-        "@1.50": {
-          slidesPerView: 7,
-          spaceBetween: 10,
-        },
-      },
-    });
-  } catch (error) {
+ </div>`
+        }).join("") 
+        sliderEl.innerHTML = markup;
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 7,
+            spaceBetween: 10,
+            speed: 250,
+            autoplay: {
+              delay: 2500,
+              disableOnInteraction: false,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            loop: true,
+            breakpoints: {
+              "@0.00": {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              "@0.75": {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              "@1.00": {
+                slidesPerView: 7,
+                spaceBetween: 10,
+              },
+              "@1.50": {
+                slidesPerView: 7,
+                spaceBetween: 10,
+              },
+            },
+          });
+    } catch (error) {
+
     console.log(error.message);
   }
 }
