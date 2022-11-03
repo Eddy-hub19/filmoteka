@@ -59,4 +59,16 @@ export default class TmDbApi {
   };
   // НЕ ЗАБЫВАЕМ ЧТО ПО УМОЛЧАНИЮ СЮДА ПЕРЕДАЕТЬСЯ СТРОКА, перед тем как передать сюда id преобразуйте ее к намберу (Number('id'))
   // Возвращает ссылку на ролик
+  fetchMoviesByGenres = async (page, genres_ids) => {
+    const response = await axios.get(
+      `discover/movie?with_genres=${genres_ids}`,
+      {
+        params: { ...this.options, page },
+      }
+    );
+    return response.data;
+  };
+  // genres_ids === строка в которую вписываем жанры по id (в genres.js есть все доступные жанры по id)
+  // пример фетч запроса, вначале указываем пейдж для пагинации, а потом передаем строку с жанрами (от 1го до .... жанра)
+  // Api.fetchMoviesByGenres(1, "27, 18, 16")
 }

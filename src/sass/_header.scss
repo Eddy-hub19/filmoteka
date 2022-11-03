@@ -10,16 +10,12 @@
   background-repeat: no-repeat;
 
   @media screen and (max-width: 767px) {
-    // min-height: 230px;
-    // padding: 40px 20px 0;
     padding-top: 44px;
     padding-bottom: 92px;
     background-size: 100% 100%;
   }
 
   @media screen and (min-width: 768px) {
-    // min-height: 216px;
-    // padding: 40px 32px 0;
     padding-top: 40px;
     padding-bottom: 80px;
     background-size: 100% 200%;
@@ -35,7 +31,7 @@
   &__logo {
     display: inherit;
     align-items: center;
-
+    transition: transform 500ms;
     @media screen and (max-width: 767px) {
       font-size: 0;
     }
@@ -65,14 +61,12 @@
 
   &__logo:hover {
     transform: scale(1.05);
-    transition: transform 500ms;
     animation: animate75 3000ms infinite 1000ms;
   }
 
   &__home:hover,
   &__library:hover {
     transform: scale(1.3);
-    transition: transform 500ms;
     animation: animate75 3000ms infinite 1000ms;
   }
 
@@ -87,6 +81,7 @@
   &__home {
     position: relative;
     margin-right: 40px;
+    transition: transform 500ms;
 
     &::after {
       content: "";
@@ -108,6 +103,7 @@
 
   &__library {
     position: relative;
+    transition: transform 500ms;
 
     &::after {
       content: "";
@@ -150,7 +146,6 @@
     color: inherit;
     background-color: transparent;
     outline: none;
-
     margin-bottom: 20px;
 
     &::after {
@@ -314,6 +309,7 @@
         url(../img/library_1280.jpg);
     }
   }
+
   & .navigation {
     &__library {
       &::after {

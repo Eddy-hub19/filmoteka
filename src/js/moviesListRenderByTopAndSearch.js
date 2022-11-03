@@ -3,6 +3,8 @@ import genres from "./services/genres";
 import { modalListener } from "./modal";
 import { hideLoader, showLoader } from "./spinner";
 
+import { markeringHomePage } from "./library-list";
+
 import { refs } from "./refs";
 import { carouselRender } from "./carousel";
 import { library } from "./library-render";
@@ -26,10 +28,10 @@ export const moviesListRenderByTopAndSearch = {
     const currentQuery = this.options.query;
     const form = event.currentTarget;
     const searchQuery = form.elements.searchQuery.value;
-    if (searchQuery === "") {
+    if (!searchQuery) {
       this.searchWarning.classList.remove("hidden");
     }
-    if (searchQuery === currentQuery || searchQuery === "") {
+    if (searchQuery === currentQuery || !searchQuery) {
       form.reset();
       return;
     }
@@ -56,7 +58,7 @@ export const moviesListRenderByTopAndSearch = {
         library.resetLibrary();
 
         const films = filmResponse.results;
-        if (films.length === 0) {
+        if (!films.length) {
           this.searchWarning.classList.remove("hidden");
           carouselRender(1, 1);
         } else {
@@ -66,6 +68,10 @@ export const moviesListRenderByTopAndSearch = {
         setTimeout(() => {
           hideLoader();
         }, 300);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
@@ -85,6 +91,10 @@ export const moviesListRenderByTopAndSearch = {
         setTimeout(() => {
           hideLoader();
         }, 300);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
@@ -136,6 +146,7 @@ export const moviesListRenderByTopAndSearch = {
     movieList.innerHTML = "";
     movieList.insertAdjacentHTML("beforeend", moviesMarkUp);
     modalListener();
+    markeringHomePage();
   },
   calculatingGenres(genre_ids) {
     const sortGenres = genres

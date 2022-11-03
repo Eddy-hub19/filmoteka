@@ -1,14 +1,10 @@
 import { refs } from "./refs";
 import TmDbApi from "./services/fetchApi";
-import { fetchYoutubeApi } from "./services/fetchYoutubeApi";
+
 import { hideLoader, showLoader } from "./spinner";
 import { checkQueue, checkWatchedFilm } from "./library-list";
-// import { moviesListRenderByTopAndSearch } from "./moviesListRenderByTopAndSearch"
-
-// fetchApi for movieDetail
 
 const Api = new TmDbApi();
-const fetchYoutube = new fetchYoutubeApi();
 
 async function render(id) {
   try {
@@ -22,6 +18,7 @@ async function render(id) {
   }
   checkQueue();
 }
+
 // For adding listeners for closing modals:
 function modalCloser() {
   const backgroundClose = (event) => {
@@ -61,6 +58,7 @@ function modalCloser() {
   refs.modalClose.addEventListener("click", crossClose);
   window.addEventListener("keydown", modalEsc);
 }
+
 // Adding listeners to modal cards::
 export function modalListener() {
   const modalOpener = (event) => {
@@ -103,11 +101,13 @@ function renderMovie(response) {
     original_title,
     overview,
   } = response;
+
   // Feature for genre map
   let preparedGenres = null;
   if (genres) {
     preparedGenres = genres.map((g) => g.name).join(", ");
   }
+  
   // For poster set
   if (!poster_path) {
     modalPoster.src =
