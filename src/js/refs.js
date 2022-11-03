@@ -8,6 +8,7 @@ export const refs = {
   gallery: document.querySelector(".gallery"),
   galleryCards: document.querySelectorAll(".gallery__card"),
   libraryContent: document.querySelector(".content"),
+  moviesContent: document.querySelector("[data-movies]"),
   carousel: document.querySelector(".carousel__container"),
   carouselLeft: document.querySelector(".carousel__left"),
   carouselRight: document.querySelector(".carousel__right"),
