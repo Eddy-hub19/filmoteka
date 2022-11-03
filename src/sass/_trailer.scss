@@ -11,8 +11,8 @@
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin: -219px 0 -30px;
-    width: 854px;
-    height: 480px;
+    width: 734px;
+    height: 350px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -22,13 +22,12 @@
   }
 }
 
-.woch__trailer {
-  display: none;
+.iframe {
   position: absolute;
-  top: 0px;
-  left: 0px;
   width: 100%;
   height: 100%;
+  top: 30px;
+  left: 0px;
 }
 
 @keyframes scaler {
