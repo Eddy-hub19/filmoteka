@@ -2,6 +2,7 @@ import genres from "./services/genres";
 import { moviesListRenderByTopAndSearch } from "./moviesListRenderByTopAndSearch";
 import { Notify } from "notiflix";
 import { modalListener } from "./modal";
+import { carouselRender } from "./carousel";
 import axios from "axios";
 
 export const selectedGenre = [];
@@ -160,6 +161,7 @@ export const filterMovie = {
       options.totalPages = filmResponse.total_pages;
       const films = filmResponse.results;
       this.createMarkUp(this.preparingForMarkUp(films));
+      carouselRender(this.options.page, this.options.totalPages);
     } catch (error) {
       console.log(error, `Попробуйте перезагрузить страницу`);
     }

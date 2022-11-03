@@ -1,6 +1,7 @@
 import { refs } from "./refs";
 import { moviesListRenderByTopAndSearch } from "./moviesListRenderByTopAndSearch";
 import { library } from "./library-render";
+import { selectedGenre, filterMovie } from "./filter";
 
 export function carouselListener() {
   refs.carousel.addEventListener("click", (event) => {
@@ -9,8 +10,6 @@ export function carouselListener() {
         event.target.classList.contains("arrow__left"):
         if (refs.pageCurrent > 1) {
           refs.pageCurrent -= 1;
-          carouselRender(refs.pageCurrent, refs.pageMax);
-
           detectWTFisGoingOn();
         }
         break;
@@ -19,8 +18,6 @@ export function carouselListener() {
         event.target.classList.contains("arrow__right"):
         if (refs.pageCurrent < refs.pageMax) {
           refs.pageCurrent += 1;
-          carouselRender(refs.pageCurrent, refs.pageMax);
-
           detectWTFisGoingOn();
         }
         break;
@@ -29,25 +26,17 @@ export function carouselListener() {
         if (refs.pageCurrent - 2 >= 97) {
           if (refs.pageCurrent <= refs.pageMax - 3) {
             refs.pageCurrent += 3;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           } else {
             refs.pageCurrent = refs.pageMax;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           }
         } else {
           if (refs.pageCurrent <= refs.pageMax - 5) {
             refs.pageCurrent += 5;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           } else {
             refs.pageCurrent = refs.pageMax;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           }
         }
@@ -57,25 +46,17 @@ export function carouselListener() {
         if (refs.pageCurrent - 2 >= 97) {
           if (refs.pageCurrent > 3) {
             refs.pageCurrent -= 3;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           } else {
             refs.pageCurrent = 1;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           }
         } else {
           if (refs.pageCurrent > 5) {
             refs.pageCurrent -= 5;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           } else {
             refs.pageCurrent = 1;
-            carouselRender(refs.pageCurrent, refs.pageMax);
-
             detectWTFisGoingOn();
           }
         }
@@ -84,8 +65,6 @@ export function carouselListener() {
       case event.target.classList.contains("carousel__number"):
         let pageNumber = parseInt(event.target.textContent);
         refs.pageCurrent = pageNumber;
-        carouselRender(refs.pageCurrent, refs.pageMax);
-
         detectWTFisGoingOn();
 
         break;
@@ -95,15 +74,26 @@ export function carouselListener() {
 
 function detectWTFisGoingOn() {
   if (document.body.classList.contains("home")) {
-    moviesListRenderByTopAndSearch.options.page = refs.pageCurrent;
-    moviesListRenderByTopAndSearch.render();
+    if (selectedGenre.length !== 0) {
+      refs.pageMax = filterMovie.options.totalPages;
+      filterMovie.options.page = refs.pageCurrent;
+      filterMovie.renderByGenre();
+      carouselRender(refs.pageCurrent, refs.pageMax);
+    } else {
+      moviesListRenderByTopAndSearch.options.page = refs.pageCurrent;
+      moviesListRenderByTopAndSearch.render();
+      carouselRender(refs.pageCurrent, refs.pageMax);
+    }
   }
   if (document.body.classList.contains("library")) {
     if (document.body.classList.contains("watched")) {
       library.watchedRender();
+      carouselRender(refs.pageCurrent, refs.pageMax);
     }
+
     if (document.body.classList.contains("queue")) {
       library.queueRender();
+      carouselRender(refs.pageCurrent, refs.pageMax);
     }
   }
 }
