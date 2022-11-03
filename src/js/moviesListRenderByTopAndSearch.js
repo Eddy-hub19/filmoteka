@@ -68,6 +68,10 @@ export const moviesListRenderByTopAndSearch = {
         setTimeout(() => {
           hideLoader();
         }, 300);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
@@ -87,6 +91,10 @@ export const moviesListRenderByTopAndSearch = {
         setTimeout(() => {
           hideLoader();
         }, 300);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }

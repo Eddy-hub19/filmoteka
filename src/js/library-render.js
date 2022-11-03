@@ -51,6 +51,10 @@ export const library = {
             return e1.title.localeCompare(e2.title);
           });
           this.createMarkUp(this.preparingForMarkUp(movies));
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
         }
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
@@ -100,6 +104,10 @@ export const library = {
             return e1.title.localeCompare(e2.title);
           });
           this.createMarkUp(this.preparingForMarkUp(movies));
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
         }
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
