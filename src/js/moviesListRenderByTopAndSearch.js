@@ -60,18 +60,20 @@ export const moviesListRenderByTopAndSearch = {
         const films = filmResponse.results;
         if (!films.length) {
           this.searchWarning.classList.remove("hidden");
+          refs.moviesContent.classList.add("movies-list__empty");
           carouselRender(1, 1);
         } else {
           this.searchWarning.classList.add("hidden");
+          refs.moviesContent.classList.remove("movies-list__empty");
         }
         this.createMarkUp(this.preparingForMarkUp(films));
         setTimeout(() => {
           hideLoader();
         }, 300);
         window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
+          top: 0,
+          behavior: "smooth",
+        });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
@@ -92,9 +94,9 @@ export const moviesListRenderByTopAndSearch = {
           hideLoader();
         }, 300);
         window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
+          top: 0,
+          behavior: "smooth",
+        });
       } catch (error) {
         console.log(error, `Попробуйте перезагрузить страницу`);
       }
