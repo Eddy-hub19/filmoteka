@@ -59,7 +59,12 @@
     padding: 0;
     border: 0;
     background: $main--text;
+    transition: background-color 0.5s;
     mask-image: url(../img/close.svg);
+    &:hover,
+    &:focus {
+      background: $main--accent;
+    }
   }
 
   &__content {
