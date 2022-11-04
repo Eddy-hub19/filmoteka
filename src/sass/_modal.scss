@@ -299,6 +299,10 @@
   &__close {
     body.dark__theme & {
       background-color: rgb(216, 213, 213);
+      &:hover,
+      &:focus {
+        background: $main--accent;
+      }
     }
     &:hover {
       border-radius: 5px;
