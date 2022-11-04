@@ -177,7 +177,9 @@ moviesListRenderByTopAndSearch.searchForm.addEventListener(
 refs.logo.addEventListener("click", () => {
   (moviesListRenderByTopAndSearch.options.query = ""),
     (moviesListRenderByTopAndSearch.options.page = 1),
-    moviesListRenderByTopAndSearch.render(),
+    moviesListRenderByTopAndSearch.searchWarning.classList.add("hidden");
+  refs.moviesContent.classList.remove("movies-list__empty");
+  moviesListRenderByTopAndSearch.render(),
     carouselRender(
       moviesListRenderByTopAndSearch.options.page,
       moviesListRenderByTopAndSearch.options.totalPages
