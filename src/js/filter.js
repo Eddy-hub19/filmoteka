@@ -24,7 +24,7 @@ export function filterByGenre() {
       el.id = genre.id;
       el.innerText = genre.name;
       el.addEventListener("click", () => {
-        if (selectedGenre.length == 0) {
+        if (!selectedGenre.length) {
           selectedGenre.push(genre.id);
         } else {
           if (selectedGenre.includes(genre.id)) {
@@ -51,7 +51,7 @@ export function filterByGenre() {
     tags.forEach((tag) => {
       tag.classList.remove("highlight");
     });
-    if (selectedGenre.length != 0) {
+    if (selectedGenre.length) {
       selectedGenre.forEach((id) => {
         const highlightTag = document.getElementById(id);
         highlightTag.classList.add("highlight");
