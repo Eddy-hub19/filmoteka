@@ -1,5 +1,5 @@
 const body = document.querySelector('body');
-const iconButton = document.querySelector('.icon__button');
+const iconButton = document.querySelector('.main__darkTheme-button');
 const iconSun = document.querySelector('.icon__sun');
 const iconMoon = document.querySelector('.icon__moon');
 export const themeKey = {
