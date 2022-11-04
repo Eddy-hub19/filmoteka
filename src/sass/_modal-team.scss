@@ -165,8 +165,9 @@
 }
 
 .team__img {
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
+    aspect-ratio: inherit;
 }
 
 .team__overlay {
