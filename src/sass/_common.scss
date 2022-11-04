@@ -78,37 +78,63 @@ ul {
 .label-w {
   &::before {
     content: "";
-    width: 0;
-    height: 0;
-    border-top: 50px solid tomato;
-    border-right: 50px solid transparent;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #ff6b08;
     position: absolute;
-    top: -7px;
-    left: -7px;
+    bottom: 4px;
+    right: 40px;
+    @media screen and (max-width: 767px) {
+      bottom: 2px;
+      right: 37px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+      bottom: 2px;
+      right: 37px;
+    }
   }
   &::after {
     content: "W";
-    top: 5px;
-    left: 5px;
+    bottom: 4px;
+    right: 44px;
     position: absolute;
+    color: white;
+    @media screen and (min-width: 1280px) {
+      font-size: 18;
+    }
   }
 }
 .label-q {
   &::before {
     content: "";
-    width: 0;
-    height: 0;
-    border-bottom: 50px solid transparent;
-    border-right: 50px solid tomato;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #ff6b08;
     position: absolute;
-    top: -7px;
-    right: -7px;
+    bottom: 4px;
+    right: 6px;
+    @media screen and (max-width: 767px) {
+      bottom: 2px;
+      right: 5px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+      bottom: 2px;
+      right: 5px;
+    }
   }
   &::after {
     content: "Q";
-    top: 5px;
-    right: 5px;
+    bottom: 5px;
+    right: 12px;
     position: absolute;
+    color: white;
+    @media screen and (min-width: 1280px) {
+      font-size: 18;
+    }
   }
 }
 
