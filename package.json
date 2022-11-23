@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/Eddy-hub19/filmoteka/issues"
   },
-  "homepage": "https://am1007.github.io/filmoteka_PG-13/",
+  "homepage": "https://eddy-hub19.github.io/filmoteka/",
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^1.1.3",
