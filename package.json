@@ -1,19 +1,19 @@
 {
-  "name": "group-hw2-placeholder",
+  "name": "filmoteka",
   "version": "1.0.0",
-  "description": "Group HW2 Markup Placeholder",
+  "description": "filmoteka",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmoteka_PG-13/"
+    "build": "parcel build src/*.html --public-url /filmoteka/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MuffMuffin/group-hw2-placeholder.git"
+    "url": "git+https://github.com/Eddy-hub19/filmoteka.git"
   },
-  "author": "MuffMuffin",
+  "author": "Eddy-hub19",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MuffMuffin/group-hw2-placeholder/issues"
+    "url": "https://github.com/Eddy-hub19/filmoteka/issues"
   },
   "homepage": "https://am1007.github.io/filmoteka_PG-13/",
   "dependencies": {
